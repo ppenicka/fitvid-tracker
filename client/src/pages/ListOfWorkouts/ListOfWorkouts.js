@@ -109,7 +109,6 @@ function ListOfWorkouts(props) {
 
     if (checkBoxStatus.easy === true) {
       filteredArray = selectedListAll.filter((Workout) => {
-        console.log('inside easy checked workout -->', Workout.difficulties.easy);
         return Workout.difficulties.easy;
       });
       console.log('the filteredArray should be empty', filteredArray);
