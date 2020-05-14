@@ -77,20 +77,20 @@ export default function NavBar() {
           <Grid item align="center" xs={2}>
             <Link className={classes.title} to='/CreateWorkoutPlan'>
               <Typography variant="h6" className={classes.title}>
-                Create Workout Plan
+                Create Plan
                 </Typography>
             </Link>
           </Grid>
 
-          <Grid item align="center" xs={3}>
+          <Grid item align="center" xs={2}>
             <Link className={classes.title} to='/listOfworkoutplans'>
               <Typography variant="h6" className={classes.title}>
-                Browse Workout Plans
+                Browse Plans
                 </Typography>
             </Link>
           </Grid>
 
-          <Grid item align="center" xs={1} >
+          <Grid item align="center" xs={2} >
             {user && (
               <div>
                 <IconButton
