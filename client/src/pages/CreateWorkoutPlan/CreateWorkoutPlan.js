@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './CreateWorkoutPlan.css';
 import { useDispatch } from 'react-redux';
-import { setWorkoutPlan } from './../../redux/actions/workoutPlanAction';
+import {
+  setWorkoutPlan,
+  updateTitlePlan,
+} from './../../redux/actions/workoutPlanAction';
 import Workout from '../Workout/Workout';
 import NavBar from './../../components/Navigation/navBar';
 import ApiClient from '../../Services/ApiClient';
@@ -18,36 +21,35 @@ import AddIcon from '@material-ui/icons/Add';
 import Card from '@material-ui/core/Card';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Fab from '@material-ui/core/Fab';
+import RemoveIcon from '@material-ui/icons/Remove';
+import NavigationIcon from '@material-ui/icons/Navigation';
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core';
+import PublicWorkout from '../../components/PublicWorkout/PublicWorkout';
+import DifficultyWorkout from '../../components/DifficultyWorkout/DifficultyWorkout';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(1),
-  },
-  namedelete: {
-    backgroundColor: 'white',
-  },
-  button: {
-    backgroundColor: 'white',
-
-    '&:hover': {
-      backgroundColor: 'black',
-      color: 'white',
-    },
-  },
-}));
 
 function CreateWorkoutPlan(props) {
   const classes = useStyles();
-
   const dispatch = useDispatch();
-  const [newWorkoutPlan, setNewWorkoutPlan] = useState({
-    trainingDays: [null, null, null, null, null, null, null],
-  });
   const user = useSelector((state) => state.currentUser);
   const { handle } = props.match.params;
   const { state } = props.location;
-  const WorkoutPlanRedux = useSelector((state) => state.workoutPlanCreation);
+
+  const WorkoutPlanRedux = useSelector(
+    (state) => state.workoutPlanCreation.workoutPlan
+  );
+  const [isPublic, setIsPublic] = useState(false);
   const [PlanName, setPlanName] = useState('');
+  const [difficulties, setDifficulties] = useState({
+    easy: false,
+    medium: false,
+    hard: false,
+  });
+  const WorkoutPlanTitleRedux = useSelector(
+    (state) => state.workoutPlanCreation.title
+  );
   const [updated, setupdated] = useState(false);
 
   if (state && state.passedIndex >= 0 && state.passedIndex !== null) {
@@ -60,7 +62,19 @@ function CreateWorkoutPlan(props) {
   const handleAddingSelected = (index) => {
     let tempArr = WorkoutPlanRedux;
     tempArr.splice(index, 1, state.workout);
-    console.log(tempArr);
+    dispatch(setWorkoutPlan(tempArr));
+    setupdated(!updated);
+  };
+
+  const handleAddingDay = () => {
+    let tempArr = WorkoutPlanRedux;
+    tempArr.push(null);
+    dispatch(setWorkoutPlan(tempArr));
+    setupdated(!updated);
+  };
+  const handleRemovingDay = () => {
+    let tempArr = WorkoutPlanRedux;
+    tempArr.splice(tempArr.length - 1, 1);
     dispatch(setWorkoutPlan(tempArr));
     setupdated(!updated);
   };
@@ -70,21 +84,26 @@ function CreateWorkoutPlan(props) {
     tempArr.splice(index, 1, null);
     dispatch(setWorkoutPlan(tempArr));
     setupdated(!updated);
-  }
-
-  const sendWorkoutPlan = async () => {
-    const newWorkoutPlan = {
-      name: PlanName,
-      workoutList: WorkoutPlanRedux,
-    };
-    console.log(newWorkoutPlan);
-    const response = await ApiClient.createPlan(newWorkoutPlan);
-    console.log('the respones in sendPlan -->', response);
   };
 
-  console.log('the state ----->', state);
-  console.log('the workoutPlan redux ----->', WorkoutPlanRedux);
-  console.log('the PlanName ----->', PlanName);
+  const handleInputChange = (enteredInput) => {
+    dispatch(updateTitlePlan(enteredInput));
+  };
+
+  const sendWorkoutPlan = () => {
+    const newWorkoutPlan = {
+      name: WorkoutPlanTitleRedux,
+      workoutList: WorkoutPlanRedux,
+      isPublic: isPublic,
+      difficulties: difficulties,
+    
+      
+    };
+
+    ApiClient.createPlan(newWorkoutPlan);
+    let tempArr = [null, null, null, null, null, null, null];
+    dispatch(setWorkoutPlan(tempArr));
+  };
 
   return !user ? (
     <Redirect to="/" />
@@ -92,31 +111,35 @@ function CreateWorkoutPlan(props) {
     <div>
       <NavBar />
       <div className={classes.root} style={{ padding: '2% 8%' }}>
-        <Typography align="center" variant="h6">
-          Create your WorkoutPlan
+        <Typography align="center" variant="h4">
+          Create your Workout Plan
         </Typography>
-        <TextField
-          type="text"
-          onChange={(e) => setPlanName(e.target.value)}
-          placeholder="    Workoutplan name..."
-          title="Type in a name"
-        ></TextField>
+        <Grid container direction="row" style={{ marginTop: '40px' }}>
+          <Grid item xs={12} align="center">
+            <TextField
+              type="text"
+              value={WorkoutPlanTitleRedux}
+              onChange={(e) => handleInputChange(e.target.value)}
+              placeholder="    Workoutplan name..."
+              title="Type in a name"
+              align="center"
+            ></TextField>
+          </Grid>
+        </Grid>
         {state && state.workout ? (
-          <div>
-            <div>{state.workout.name}</div>
-            <div>{state.passedIndex}</div>
-          </div>
+          <Grid container direction="row" style={{ marginTop: '20px' }}>
+            <Grid item xs={12} align="center">
+              <div>
+                <div>You selected the: {state.workout.name}</div>
+              </div>
+            </Grid>
+          </Grid>
         ) : (
           ''
         )}
         {WorkoutPlanRedux.map((workout, index) =>
           workout ? (
             <div>
-              {index / 7 === 0 ? (
-                <Typography variant="h6">Week 1</Typography>
-              ) : (
-                ''
-              )}
               <div className="current-rest-day">
                 <div className="day-caption-box">
                   <Typography variant="h6">Day {index + 1}</Typography>
@@ -126,34 +149,28 @@ function CreateWorkoutPlan(props) {
                     container
                     alignItems="center"
                     direction="row"
-                    style={{ padding: '2% 5%' }}
+                    className={classes.BoxBelowDelete}
                   >
-                    <Grid item xs={3}>
+                    <Grid item xs={0} className={classes.deleteGrid}>
+                      <IconButton
+                        aria-label="delete"
+                        className={classes.margin}
+                        onClick={() => handleDeletingSelected(index)}
+                      >
+                        <DeleteIcon fontSize="large" />
+                      </IconButton>
+                    </Grid>
+                    <Grid item xs={7} className={classes.description}>
                       {workout.name && (
-                        <Typography
-                          className={classes.namedelete}
-                          variant="h6"
-                          align="left"
-                        >
+                        <Typography variant="h6" align="left">
                           {workout.name}
-                          <IconButton
-                            aria-label="delete"
-                            className={classes.margin}
-                            onClick={() => handleDeletingSelected(index)}
-                          >
-                            <DeleteIcon fontSize="large" />
-                          </IconButton>
                         </Typography>
                       )}
-                    </Grid>
-                    <Grid item xs={2}>
                       {workout.description && (
                         <Typography variant="body1">
                           {workout.description}
                         </Typography>
                       )}
-                    </Grid>
-                    <Grid item xs={2}>
                       {workout.difficulties && (
                         <Typography variant="body1">
                           <u>difficulty:</u>
@@ -164,6 +181,7 @@ function CreateWorkoutPlan(props) {
                         </Typography>
                       )}
                     </Grid>
+
                     <Grid item xs={5}>
                       {workout.youtubeId && (
                         <iframe
@@ -180,11 +198,7 @@ function CreateWorkoutPlan(props) {
             </div>
           ) : (
             <div>
-              {index / 7 === 0 ? (
-                <Typography variant="h6">Week 1</Typography>
-              ) : (
-                ''
-              )}
+              
               <div className="current-rest-day">
                 <div className="day-caption-box">
                   <Typography variant="h6">Day {index + 1}</Typography>
@@ -247,11 +261,65 @@ function CreateWorkoutPlan(props) {
             </div>
           )
         )}
-        <Grid container direction="column">
-          <Grid item align="right" style={{ marginTop: '20px' }}>
-            <Button className={classes.button} onClick={sendWorkoutPlan}>
-              Save Workout Plan
-            </Button>
+        <Grid container direction="row">
+          <Grid item xs={6} align="right" style={{ marginTop: '20px' }}>
+            <ThemeProvider theme={defaultMaterialTheme}>
+              <Fab
+                size="small"
+                color="primary"
+                aria-label="add"
+                className={classes.margin}
+                onClick={() => {
+                  handleRemovingDay();
+                }}
+              >
+                <RemoveIcon />
+              </Fab>
+            </ThemeProvider>
+          </Grid>
+          <Grid item xs={1} align="right" style={{ marginTop: '20px' }}>
+            <ThemeProvider theme={defaultMaterialTheme}>
+              <Fab
+                size="small"
+                color="primary"
+                aria-label="add"
+                className={classes.margin}
+                onClick={() => handleAddingDay()}
+              >
+                <AddIcon />
+              </Fab>
+            </ThemeProvider>
+          </Grid>
+          <Grid item xs={5} align="right" style={{ marginTop: '20px' }}></Grid>
+        </Grid>
+        <Grid container direction="row">
+          <Grid item xs={2}></Grid>
+          <Grid item xs={10} style={{ marginTop: '60px' }}>
+            <DifficultyWorkout
+              difficulties={difficulties}
+              setDifficulties={setDifficulties}
+              editable={true}
+            />
+          </Grid>
+        </Grid>
+        <Grid container direction="row" style={{ marginTop: '40px' }}>
+          <Grid item xs={2}></Grid>
+          <PublicWorkout
+            isPublic={isPublic}
+            setIsPublic={setIsPublic}
+            editable={true}
+          />
+        </Grid>
+        <Grid container direction="row" style={{ marginTop: '40px' }}>
+          <Grid item xs={2}></Grid>
+          <Grid iterm xs={10}>
+            
+              <Button className={classes.button2} onClick={sendWorkoutPlan}>
+              <Link to={"/ListOfWorkoutPlans"} style={{textDecoration: 'none', color: 'black'}}>
+                Save Workout Plan
+                </Link>
+              </Button>
+            
           </Grid>
         </Grid>
       </div>
@@ -260,3 +328,66 @@ function CreateWorkoutPlan(props) {
 }
 
 export default CreateWorkoutPlan;
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: theme.spacing(1),
+  },
+  deletebutton: {
+    position: 'relative',
+    bottom: '60px',
+  },
+  BoxBelowDelete: {
+    paddingBottom: '2%',
+    paddingTop: '2%',
+    paddingRight: '2%',
+    position: 'relative',
+  },
+  description: {
+    paddingLeft: '8%',
+  },
+  deletebox: {
+    backgroundColor: 'green',
+  },
+  deleteGrid: {
+    position: 'absolute',
+    top: 0,
+  },
+  button: {
+    backgroundColor: 'white',
+
+    '&:hover': {
+      backgroundColor: 'black',
+      color: 'white',
+    },
+    margin: {
+      margin: theme.spacing(1),
+    },
+    extendedIcon: {
+      marginRight: theme.spacing(1),
+    },
+  },
+  button2: {
+    backgroundColor: 'white',
+    border: 'solid',
+
+    '&:hover': {
+      backgroundColor: 'black',
+      color: 'white',
+    },
+    margin: {
+      margin: theme.spacing(1),
+    },
+    extendedIcon: {
+      marginRight: theme.spacing(1),
+    },
+  },
+}));
+
+const defaultMaterialTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#212121',
+    },
+  },
+});

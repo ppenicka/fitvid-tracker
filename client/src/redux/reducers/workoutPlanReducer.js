@@ -1,13 +1,24 @@
 import * as actions from '../actions/workoutPlanAction';
 
-const initialState = [null, null, null, null, null, null, null];
+const initialState = {
+  workoutPlan: [null, null, null, null, null, null, null],
+  title: '',
+};
 
 export default function workoutPlanReducer(state = initialState, action) {
   switch (action.type) {
-    default:
-      return state
     case actions.SET_WORKOUTPLAN:
-      return action.payload
+      return {
+        ...state,
+        workoutPlan: action.payload,
+      };
+    case actions.UPDATE_TITLE:
+      console.log('YYYEEEEEHHHHAAAA');
+      return {
+        ...state,
+        title: action.payload,
+      };
+    default:
+      return state;
   }
 }
-
