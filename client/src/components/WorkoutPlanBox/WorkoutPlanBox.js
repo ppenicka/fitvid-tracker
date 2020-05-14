@@ -65,7 +65,7 @@ const WorkoutPlanBox = ({ plan }) => {
     });
   }
 
-  const classes = useStyles(); 
+  const classes = useStyles();
 
   function changeDate (date) {
     addToSchedule(date)
@@ -106,8 +106,8 @@ const WorkoutPlanBox = ({ plan }) => {
                   <Button className={classes.button}>View Workout Plan</Button>
                 </Link>
               ) : (
-                  <Link style={{ textDecoration: 'none'}} to={{ pathname: '/CreateWorkoutPlan', state: { workout: plan } }}>
-                    <Button className={classes.button}>Add to Workoutplan</Button>
+                  <Link style={{ textDecoration: 'none'}} to={{ pathname: `/WorkoutPlan/${plan._id}`, state: { workout: plan } }}>
+                    <Button className={classes.button}>View Details</Button>
                   </Link>
                 )}
             </div>
