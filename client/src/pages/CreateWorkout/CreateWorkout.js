@@ -213,7 +213,7 @@ function CreateWorkout() {
                   size="small"
                   onClick={createWorkout}
                 >
-                  {youtubeId && <Link to={`/HomePage`} style={{ textDecoration: 'none', color: "white" }} >
+                  {youtubeId && <Link to={`/HomePage`} className={classes.button} style={{textDecoration: 'none'}} >
                     Create
                   </Link>}
                   {!youtubeId && "Create"
@@ -237,6 +237,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     backgroundColor: 'white',
+    color:"black",
     '&:hover': {
       backgroundColor: 'black',
       color: 'white',
