@@ -1,9 +1,29 @@
 
 # Fitvid Tracker
 
-Web app that helps users organize personal workout plans based on YouTube videos.
+Web app that helps users organize personal workout plans based on YouTube videos. Users can import workout videos from YouTube, store them in the system with custom metadata, create workout plans out of them, share with other users, and schedule in their personal workout calendar.
 
 ![Home page of the Fitvid Tracker app](docs/fitvid_home.PNG)
+
+## Usage
+
+1. Users log in using their Google account and the app automatically creates their user account.
+2. The Home page welcomes the user, initially with no workouts scheduled.
+3. To get started, the user can click Create Workout from the navigation menu and define a new workout based on a YouTube video of their choice. Creation of the workout comes with the option to schedule the workout for a specific day of the week, repeated for a specified number of weeks.
+4. Users can also create workout plans, which are essentially sequences of days with workouts assigned to individual dates.
+5. Once a user has some workouts scheduled, they get displayed on the Home page on the specific date. It is also possible to display workouts scheduled for any other day using the Select another day control.
+6. After clicking the scheduled workout on the home page, a detail of the workout is displayed to the user and the user can start exercising. He can use the provided timer and stopwatch, and skip to specific exercises in the workout video by clicking the Timestamp in the list of exercises.
+
+## Data Model
+
+The application's data model consists of the following object types:
+
+- **Workout** - individual workout session based on a single YouTube video, with a list of exercises timestamped to their position in the video
+- **Workout Plan** - a succession of days with workouts mapped to them; can be added to a user's schedule starting from an arbitrary date selected by the user
+- **Schedule** - mapping of workouts to calendar days, where multiple workouts can be mapped to a single day
+- **Profile** - user of the application, with user details obtained from the Google account used on login
+
+![UML Diagram of the App's Data Model](specs/uml.PNG)
 
 ## Installation
 
@@ -27,14 +47,9 @@ Web app that helps users organize personal workout plans based on YouTube videos
 - `REACT_APP_SERVER_URL` - URL of the server part of the application, including port number (e.g. *http://localhost:3000*)
 - `REACT_APP_GOOGLE_API_KEY` - API key for YouTube v3 API obtained from [Google APIs](https://console.developers.google.com/)
 
-## Usage
-
-1. Users log in using their Google account and the app automatically creates their user account.
-2. The Home page welcomes the user, initially with no workouts scheduled.
-3. To get started, the user can click Create Workout from the navigation menu and define a new workout based on a YouTube video of their choice. Creation of the workout comes with the option to schedule the workout for a specific day of the week, repeated for a specified number of weeks.
-4. Users can also create workout plans, which are essentially sequences of days with workouts assigned to individual dates.
-5. Once a user has some workouts scheduled, they get displayed on the Home page on the specific date. It is also possible to display workouts scheduled for any other day using the Select another day control.
-6. After clicking the scheduled workout on the home page, a detail of the workout is displayed to the user and the user can start exercising. He can use the provided timer and stopwatch, and skip to specific exercises in the workout video by clicking the Timestamp in the list of exercises.
+6. Start up your database.
+7. Start up the server by running the `node src/index.js` command inside the *server* directory.
+7. Start up the client by running the `npm start` command inside the *client* directory.
 
 ## Tech Stack
 The app has been developed using the following technologies:
