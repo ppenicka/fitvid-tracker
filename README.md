@@ -23,7 +23,7 @@ The application's data model consists of the following object types:
 - **Schedule** - mapping of workouts to calendar days, where multiple workouts can be mapped to a single day
 - **Profile** - user of the application, with user details obtained from the Google account used on login
 
-![UML Diagram of the App's Data Model](specs/uml.PNG)
+![UML Diagram of the App's Data Model](docs/uml_docs.PNG)
 
 ## Installation
 
