@@ -10,8 +10,9 @@ const router = require('./routes/router.js');
 
 const app = new Koa();
 const static_pages = new Koa();
-static_pages.use(serve(__dirname + '/../../client/build'));
-app.use(mount("/", static_pages));
+// static_pages.use(serve(__dirname + '/../../client/build'));
+// app.use(mount("/", static_pages));
+app.use(serve(__dirname + '/../../client/build'));
 
 
 mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true}, (error) => {
