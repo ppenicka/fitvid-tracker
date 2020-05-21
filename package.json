@@ -16,6 +16,21 @@
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^2.2.3",
+    "@koa/router": "^8.0.8",
+    "dotenv": "^8.2.0",
+    "googleapis": "^49.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^2.2.0",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-jwt": "^3.6.0",
+    "koa-mount": "^4.0.0",
+    "koa-static": "^5.0.0",
+    "mongoose": "^5.9.11",
+    "query-string": "^6.12.1"
+  },
   "bugs": {
     "url": "https://github.com/ppenicka/fitvid-tracker/issues"
   },
