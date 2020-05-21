@@ -42,7 +42,7 @@ function Login () {
             fullWidth
             variant="contained"
             className={classes.submit}
-            onClick={(e) => { e.preventDefault(); window.location.href = 'http://localhost:3001/login/google' }}
+            onClick={(e) => { e.preventDefault(); window.location.href = `${process.env.REACT_APP_SERVER_URL}login/google` }}
           >
             Log In with Google
           </Button>
@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
     backgroundColor: "black",
-    color: "white", 
+    color: "white",
     '&:hover': {
         backgroundColor: 'rgb(80,80,80)',
     }
