@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopo
   } else {
     console.log('connnected to db');
   }
-} );
+});
 
 app
   .use(cors())
@@ -28,5 +28,5 @@ app
   .use(router.routes())
   .use(router.allowedMethods());
 
-app.listen(process.env.SERVER_PORT);
-console.log(`Server listening on ${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`);
+app.listen(process.env.PORT);
+console.log(`Server listening on ${process.env.SERVER_HOST}:${process.env.PORT}`);
