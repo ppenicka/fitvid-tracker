@@ -42,7 +42,7 @@ function Login () {
             fullWidth
             variant="contained"
             className={classes.submit}
-            onClick={(e) => { e.preventDefault(); window.location.href = `${process.env.REACT_APP_SERVER_URL}login/google` }}
+            onClick={(e) => { e.preventDefault(); window.location.href = `${process.env.REACT_APP_SERVER_URL}/login/google` }}
           >
             Log In with Google
           </Button>
