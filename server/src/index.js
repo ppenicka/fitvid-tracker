@@ -31,9 +31,5 @@ app
     await send(ctx, 'index.html', {root: __dirname + '/../../client/build/'})
   });
 
-  // .use(function* index() {
-  //   yield send(this, 'index.html', {root: '../client/build/'});
-  // });
-
 app.listen(process.env.PORT);
 console.log(`Server listening on ${process.env.SERVER_HOST}:${process.env.PORT}`);
