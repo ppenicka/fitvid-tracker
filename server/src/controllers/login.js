@@ -33,7 +33,6 @@ const processGoogleCb = async (ctx, next) => {
   }
 
   setUserToken(googleId, token);
-
   ctx.redirect(`${process.env.CLIENT_URL}/setCredentials?_id=${foundProfile._id}&token=${sessionToken}`);
 }
 

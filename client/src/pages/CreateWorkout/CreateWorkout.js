@@ -22,14 +22,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
-
-
-
-
 import WorkoutLength from '../../components/WorkoutLength/WorkoutLength';
-
-
-
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -38,14 +31,14 @@ import { setSchedule } from '../../redux/actions/scheduleActions';
 //route
 import { Link } from 'react-router-dom';
 
-function getIdVideoYoutube(url) {
+function getIdVideoYoutube (url) {
   var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
   var match = url.match(regExp);
   return (match && match[7].length == 11) ? match[7] : false;
 }
 //-------------------------------------------
 
-function CreateWorkout() {
+function CreateWorkout () {
 
   //redux
   const dispatch = useDispatch();
@@ -76,7 +69,6 @@ function CreateWorkout() {
     setYoutubeId(youtubeId);
   }
 
-
   const getworkoutLength = (youtubeId) => {
     fetch(`https://www.googleapis.com/youtube/v3/videos?id=${youtubeId}&part=contentDetails&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
       .then((response) => response.json())
@@ -94,8 +86,8 @@ function CreateWorkout() {
     for (let i = 0; i < repeatWeeks; i++) {
       for (let j = 0; j < 7; j++) {
         if (days[j]) {
-          const day = nextDay(today, j+1).date;
-          arr.push({day: moment(day).add(7*i, 'days').format('YYYY-MM-DD'), workout: workoutId});
+          const day = nextDay(today, j + 1).date;
+          arr.push({ day: moment(day).add(7 * i, 'days').format('YYYY-MM-DD'), workout: workoutId });
         }
       }
     }
@@ -103,11 +95,11 @@ function CreateWorkout() {
     return arr;
   }
 
-  async function createWorkout() {
+  async function createWorkout () {
 
     if (!youtubeId) {
       alert("Video required. \n Please import one.");
-    return;
+      return;
     } else {
       const workout = {
         name: workoutName,
@@ -121,7 +113,7 @@ function CreateWorkout() {
         exercises: exercises,
         isPublic: isPublic
       };
-  
+
       ApiClient.createWorkout(workout)
         .then((response) => {
           const workoutId = response;
@@ -132,7 +124,7 @@ function CreateWorkout() {
             dispatch(setSchedule(response));
           });
         });
-  
+
       return null;
     }
   };
@@ -148,12 +140,12 @@ function CreateWorkout() {
       <div>
         <NavBar />
         <div className={classes.root}>
-          <Paper elevation={3} style={{margin: "3% 0%"}}>
-            <Grid container direction="column" justify="center" alignItem="center" spacing={4} style={{padding: "2% 5%"}}>
+          <Paper elevation={3} style={{ margin: "3% 0%" }}>
+            <Grid container direction="column" justify="center" alignItem="center" spacing={4} style={{ padding: "2% 5%" }}>
               <Grid item xs={12}>
                 <Typography variant="h6" align="center">Create your daily workout</Typography>
               </Grid>
-              <Grid item xs={12}  align="center">
+              <Grid item xs={12} align="center">
                 <NameWorkout workoutName={workoutName} setWorkoutName={setWorkoutName} editable={true} />
               </Grid>
               {!youtubeId &&
@@ -169,28 +161,28 @@ function CreateWorkout() {
                   >Import</Button>
                 </Grid>}
               {youtubeId &&
-              <div>           
-                <Grid item xs={12} align="center">
-                  <YoutubePlayer url={`https://www.youtube.com/watch?v=${youtubeId}`} />
-                </Grid>
-                <Grid item xs={12} align="right">                
-                  <Button
-                    variant="contained"
-                    className={classes.button}
-                    startIcon={<DeleteIcon />}
-                    size="small"
-                    onClick={() => setYoutubeId()}
-                  >Change Video</Button>
-                </Grid>    
-              </div>        
+                <div>
+                  <Grid item xs={12} align="center">
+                    <YoutubePlayer url={`https://www.youtube.com/watch?v=${youtubeId}`} />
+                  </Grid>
+                  <Grid item xs={12} align="right">
+                    <Button
+                      variant="contained"
+                      className={classes.button}
+                      startIcon={<DeleteIcon />}
+                      size="small"
+                      onClick={() => setYoutubeId()}
+                    >Change Video</Button>
+                  </Grid>
+                </div>
               }
-              <Grid item xs={12} >                
+              <Grid item xs={12} >
                 <TableW exercises={exercises} setExercises={setExercises} editable={true} />
               </Grid>
-              <Grid item xs={12} >                
+              <Grid item xs={12} >
                 <DescriptionWorkout description={description} setDescription={setDescription} editable={true} />
               </Grid>
-              <Grid item xs={12} >                
+              <Grid item xs={12} >
                 <WorkoutLength length={workoutLength} setLength={setworkoutLength} editable={true} />
               </Grid>
               <Grid item xs={12}>
@@ -199,7 +191,7 @@ function CreateWorkout() {
               <Grid item xs={12}>
                 <DaysWorkout days={days} setDays={setDays} repeatWeeks={repeatWeeks} setRepeatWeeks={setRepeatWeeks} editable={true} />
               </Grid>
-              <Grid item xs={12} style={{paddingTop: "0px"}}> 
+              <Grid item xs={12} style={{ paddingTop: "0px" }}>
                 <Tags tags={tags} setTags={setTags} editable={true} />
               </Grid>
               <Grid item xs={12}>
@@ -213,7 +205,7 @@ function CreateWorkout() {
                   size="small"
                   onClick={createWorkout}
                 >
-                  {youtubeId && <Link to={`/HomePage`} className={classes.button} style={{textDecoration: 'none'}} >
+                  {youtubeId && <Link to={`/HomePage`} className={classes.button} style={{ textDecoration: 'none' }} >
                     Create
                   </Link>}
                   {!youtubeId && "Create"
@@ -231,13 +223,13 @@ export default CreateWorkout;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    
+
     padding: "2% 8%"
 
   },
   button: {
     backgroundColor: 'white',
-    color:"black",
+    color: "black",
     '&:hover': {
       backgroundColor: 'black',
       color: 'white',

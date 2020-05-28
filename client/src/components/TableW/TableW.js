@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 import TextField from "@material-ui/core/TextField";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -15,7 +16,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -46,12 +46,41 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function TableW({ exercises, setExercises, editable, setTimeVideo, setClickTimestamp, clickTimestamp }) {
+function TableW ({ exercises, setExercises, editable, setTimeVideo, setClickTimestamp, clickTimestamp }) {
+
+  useEffect(() => {
+
+  }, []);
 
   const handleChange = (event, index, name) => {
     event.preventDefault();
     console.log(event.target.value, index, name);
     exercises[index][name] = event.target.value;
+  }
+
+  function importFromClipboard () {
+    navigator.clipboard.readText()
+      .then((input) => {
+        const exercises = input.split('\n')
+          .map(item => item
+            .match(/(\d?\d:\d\d)\W+(.+)/))
+          .filter(item => item)
+          .map(item => {
+            const name = item[2].match(/(.+?)((\s{2,})|(,\s))/);
+            console.log("importFromClipboard -> name", name)
+            const reps = item[2].match(/x\s?(\d{1,3})/);
+
+            return {
+              name: name ? name[1] : item[2],
+              sets: 0,
+              reps: reps ? reps[1] : 0,
+              timestamp: item[1]
+            }
+          })
+          .sort((a, b) => (a.timestamp < b.timestamp));
+
+        setExercises(exercises);
+      })
   }
 
   const handleAddExercise = () => {
@@ -95,11 +124,11 @@ function TableW({ exercises, setExercises, editable, setTimeVideo, setClickTimes
             <table
               className="table table-bordered table-hover"
               id="tab_logic"
-              style={{width:"100%"}}
+              style={{ width: "100%" }}
             >
               <TableHead>
                 <TableRow>
-                  <StyledTableCell align="center"> Name of the exercises </StyledTableCell>
+                  <StyledTableCell align="center"> Exercise Name </StyledTableCell>
                   <StyledTableCell align="center"> Sets </StyledTableCell>
                   <StyledTableCell align="center"> Reps </StyledTableCell>
                   <StyledTableCell align="center"> Timestamp </StyledTableCell>
@@ -108,55 +137,56 @@ function TableW({ exercises, setExercises, editable, setTimeVideo, setClickTimes
                 </TableRow>
               </TableHead>
               <tbody>
-                {editable && exercises.map((item, idx) => (
-                  <tr id="addr0" key={idx}>
-                    <td>
-                      <TextField
-                        name="name"
-                        size="small"
-                        defaultValue={exercises[idx].name}
-                        onChange={(event) => { handleChange(event, idx, "name") }}
-                        variant="outlined"
-                        fullWidth
-                      />
-                    </td>
-                    <td>
-                      <TextField
-                        inputProps={{ style: { textAlign: 'right' } }}
-                        type="number"
-                        name="sets"
-                        size="small"
-                        defaultValue={exercises[idx].sets}
-                        onChange={(event) => handleChange(event, idx, "sets")}
-                        variant="outlined"
-                        fullWidth
-                      />
-                    </td>
-                    <td>
-                      <TextField
-                        inputProps={{ style: { textAlign: 'right' } }}
-                        type="number"
-                        name="reps"
-                        size="small"
-                        defaultValue={exercises[idx].reps}
-                        onChange={(event) => handleChange(event, idx, "reps")}
-                        variant="outlined"
-                        fullWidth
-                      />
-                    </td>
-                    <td>
-                      <TextField
-                        inputProps={{ style: { textAlign: 'right' } }}
-                        type="text"
-                        name="timestamp"
-                        size="small"
-                        defaultValue={exercises[idx].timestamp}
-                        onChange={(event) => handleChange(event, idx, "timestamp")}
-                        variant="outlined"
-                        fullWidth
-                      />
-                    </td>
-                    {/* <td>
+                {editable && exercises.map((item, idx) => {
+                  return (
+                    <tr id="addr0" key={item.idx + item.name}>
+                      <td>
+                        <TextField
+                          name="name"
+                          size="small"
+                          defaultValue={item.name}
+                          onChange={(event) => { handleChange(event, idx, "name") }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </td>
+                      <td>
+                        <TextField
+                          inputProps={{ style: { textAlign: 'right' } }}
+                          type="number"
+                          name="sets"
+                          size="small"
+                          defaultValue={item.sets}
+                          onChange={(event) => handleChange(event, idx, "sets")}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </td>
+                      <td>
+                        <TextField
+                          inputProps={{ style: { textAlign: 'right' } }}
+                          type="number"
+                          name="reps"
+                          size="small"
+                          defaultValue={item.reps}
+                          onChange={(event) => handleChange(event, idx, "reps")}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </td>
+                      <td>
+                        <TextField
+                          inputProps={{ style: { textAlign: 'right' } }}
+                          type="text"
+                          name="timestamp"
+                          size="small"
+                          defaultValue={item.timestamp}
+                          onChange={(event) => handleChange(event, idx, "timestamp")}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </td>
+                      {/* <td>
                       <input
                         type="checkbox"
                         name="done"
@@ -166,7 +196,7 @@ function TableW({ exercises, setExercises, editable, setTimeVideo, setClickTimes
                         className="form-control"
                       />
                     </td> */}
-                    {/* <td>
+                      {/* <td>
                       <button
                         className="btn btn-outline-danger btn-sm"
                         onClick={() => handleRemoveSpecificRow(idx)}
@@ -174,8 +204,9 @@ function TableW({ exercises, setExercises, editable, setTimeVideo, setClickTimes
                         Remove
                       </button>
                     </td> */}
-                  </tr>
-                ))}
+                    </tr>
+                  )
+                })}
                 {!editable && exercises.map((item, idx) => (
                   <StyledTableRow id="addr0" key={idx}>
                     <StyledTableCell>
@@ -192,7 +223,7 @@ function TableW({ exercises, setExercises, editable, setTimeVideo, setClickTimes
                       {exercises[idx].timestamp}
                     </StyledTableCell>
                     <StyledTableCell >
-                      <FormControl style={{marginLeft:"30%"}}>
+                      <FormControl style={{ marginLeft: "30%" }}>
                         <FormGroup>
                           <FormControlLabel
                             control={<Checkbox size="small" color="default" />}
@@ -220,6 +251,13 @@ function TableW({ exercises, setExercises, editable, setTimeVideo, setClickTimes
                 onClick={handleRemoveExercise}
               >Delete
               Last Row</Button>
+              <Button
+                variant="contained"
+                className={classes.button}
+                startIcon={<FileCopyIcon />}
+                size="small"
+                onClick={importFromClipboard}
+              >Import from Clipboard</Button>
             </div>}
           </div>
         </div>
@@ -229,4 +267,4 @@ function TableW({ exercises, setExercises, editable, setTimeVideo, setClickTimes
 }
 
 
-export default TableW; 
+export default TableW;
