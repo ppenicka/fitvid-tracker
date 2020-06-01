@@ -10,9 +10,7 @@ import SetCredentials from './Pages/SetCredentials/SetCredentials';
 import CreateWorkout from './Pages/CreateWorkout/CreateWorkout';
 import ListOfWorkouts from './Pages/ListOfWorkouts/ListOfWorkouts';
 import HomePage from './Pages/HomePage/HomePage';
-import MyListOfWorkouts from './Pages/ListOfWorkouts/myListOfWorkouts';
 import ListOfWorkoutPlans from './Pages/ListOfWorkoutPlans/ListOfWorkoutPlans';
-import myListOfWorkoutPlans from './Pages/ListOfWorkoutPlans/MyListOfWorkoutPlans'
 import WorkoutPlan from './Pages/WorkoutPlan/WorkoutPlan';
 import CreateWorkoutPlan from './Pages/CreateWorkoutPlan/CreateWorkoutPlan'
 import NavBar from './Components/Navigation/navBar';
@@ -37,12 +35,8 @@ function App () {
               component={Workout} />
             <Route exact path="/ListOfWorkouts"
               component={ListOfWorkouts} />
-            <Route exact path="/myListOfWorkouts"
-              component={MyListOfWorkouts} />
             <Route exact path="/ListOfWorkoutPlans"
               component={ListOfWorkoutPlans} />
-            <Route exact path="/myListOfWorkoutPlans"
-              component={myListOfWorkoutPlans} />
             <Route exact path="/WorkoutPlan/:id"
               component={WorkoutPlan} />
             <Route exact path="/CreateWorkoutPlan"

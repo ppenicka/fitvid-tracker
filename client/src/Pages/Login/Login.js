@@ -81,7 +81,7 @@ function Login () {
             Log In with Google
           </Button>
           <Box mt={5}>
-          <Typography variant="subtitle1">WELCOME TO FITVID TRACKER, THE FIRST WEBSITE/APP TO CREATE YOUR PERSONAL WORKOUT USING YOUTUBE VIDEOS</Typography>
+          <Typography variant="subtitle1">WELCOME TO FITVID TRACKER, THE ULTIMATE WEBSITE TO CREATE YOUR PERSONAL WORKOUT PLAN USING YOUTUBE VIDEOS</Typography>
           </Box>
         </form>
       </div>
