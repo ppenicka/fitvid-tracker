@@ -3,19 +3,19 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import reduxStore from './redux/stores/reduxStore';
-import Login from './pages/Login/Login';
-import Workout from './pages/Workout/Workout';
-import SetCredentials from './pages/SetCredentials/SetCredentials';
-import CreateWorkout from './pages/CreateWorkout/CreateWorkout';
-import ListOfWorkouts from './pages/ListOfWorkouts/ListOfWorkouts';
-import HomePage from './pages/HomePage/HomePage';
-import MyListOfWorkouts from './pages/ListOfWorkouts/myListOfWorkouts';
-import ListOfWorkoutPlans from './pages/ListOfWorkoutPlans/ListOfWorkoutPlans';
-import myListOfWorkoutPlans from './pages/ListOfWorkoutPlans/MyListOfWorkoutPlans'
-import WorkoutPlan from './pages/WorkoutPlan/WorkoutPlan';
-import CreateWorkoutPlan from './pages/CreateWorkoutPlan/CreateWorkoutPlan'
-import NavBar from './components/Navigation/navBar';
+import reduxStore from './Redux/stores/reduxStore';
+import Login from './Pages/Login/Login';
+import Workout from './Pages/Workout/Workout';
+import SetCredentials from './Pages/SetCredentials/SetCredentials';
+import CreateWorkout from './Pages/CreateWorkout/CreateWorkout';
+import ListOfWorkouts from './Pages/ListOfWorkouts/ListOfWorkouts';
+import HomePage from './Pages/HomePage/HomePage';
+import MyListOfWorkouts from './Pages/ListOfWorkouts/myListOfWorkouts';
+import ListOfWorkoutPlans from './Pages/ListOfWorkoutPlans/ListOfWorkoutPlans';
+import myListOfWorkoutPlans from './Pages/ListOfWorkoutPlans/MyListOfWorkoutPlans'
+import WorkoutPlan from './Pages/WorkoutPlan/WorkoutPlan';
+import CreateWorkoutPlan from './Pages/CreateWorkoutPlan/CreateWorkoutPlan'
+import NavBar from './Components/Navigation/navBar';
 import './App.css';
 
 function App () {

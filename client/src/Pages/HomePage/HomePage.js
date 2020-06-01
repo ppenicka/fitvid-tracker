@@ -8,8 +8,8 @@ import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 import AddIcon from '@material-ui/icons/Add';
 import Box from '@material-ui/core/Box';
 
-import ScheduledForToday from '../../components/ScheduledForToday/ScheduledForToday';
-import NavBar from './../../components/Navigation/navBar';
+import ScheduledForToday from '../../Components/ScheduledForToday/ScheduledForToday';
+import NavBar from './../../Components/Navigation/navBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {

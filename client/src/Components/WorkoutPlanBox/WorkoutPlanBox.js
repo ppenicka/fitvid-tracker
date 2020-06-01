@@ -9,7 +9,7 @@ import { createMuiTheme } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-import { setSchedule } from '../../redux/actions/scheduleActions';
+import { setSchedule } from '../../Redux/actions/scheduleActions';
 import ApiClient from '../../Services/ApiClient';
 import './WorkoutPlanBox.css';
 

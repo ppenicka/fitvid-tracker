@@ -13,17 +13,17 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
-import NameWorkout from '../../components/NameWorkout/NameWorkout';
-import TableW from '../../components/TableW/TableW';
-import DescriptionWorkout from '../../components/DescriptionWorkout/DescriptionWorkout';
-import DifficultyWorkout from '../../components/DifficultyWorkout/DifficultyWorkout';
-import DaysWorkout from '../../components/DaysWorkout/DaysWorkout';
-import YoutubePlayer from '../../components/YoutubePLayer/YoutubePlayer'
-import PublicWorkout from '../../components/PublicWorkout/PublicWorkout';
-import Tags from '../../components/Tags/Tags';
-import NavBar from './../../components/Navigation/navBar'
-import WorkoutLength from '../../components/WorkoutLength/WorkoutLength';
-import { setSchedule } from '../../redux/actions/scheduleActions';
+import NameWorkout from '../../Components/NameWorkout/NameWorkout';
+import TableW from '../../Components/TableW/TableW';
+import DescriptionWorkout from '../../Components/DescriptionWorkout/DescriptionWorkout';
+import DifficultyWorkout from '../../Components/DifficultyWorkout/DifficultyWorkout';
+import DaysWorkout from '../../Components/DaysWorkout/DaysWorkout';
+import YoutubePlayer from '../../Components/YoutubePLayer/YoutubePlayer'
+import PublicWorkout from '../../Components/PublicWorkout/PublicWorkout';
+import Tags from '../../Components/Tags/Tags';
+import NavBar from './../../Components/Navigation/navBar'
+import WorkoutLength from '../../Components/WorkoutLength/WorkoutLength';
+import { setSchedule } from '../../Redux/actions/scheduleActions';
 import ApiClient from '../../Services/ApiClient';
 
 const useStyles = makeStyles((theme) => ({

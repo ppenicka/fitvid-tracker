@@ -11,7 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Grid from '@material-ui/core/Grid';
 
-import TopBar from '../../components/TopBar/TopBar';
+import TopBar from '../../Components/TopBar/TopBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {

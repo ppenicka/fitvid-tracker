@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import ApiClient from '../../Services/ApiClient';
-import { setSchedule } from '../../redux/actions/scheduleActions';
+import { setSchedule } from '../../Redux/actions/scheduleActions';
 import './WorkoutBox.css';
 
 const useStyles = makeStyles((theme) => ({

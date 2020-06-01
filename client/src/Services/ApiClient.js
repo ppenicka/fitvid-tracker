@@ -1,4 +1,4 @@
-import reduxStore from '../redux/stores/reduxStore';
+import reduxStore from '../Redux/stores/reduxStore';
 
 const getRequest = (path) => {
   const state = reduxStore.store.getState();

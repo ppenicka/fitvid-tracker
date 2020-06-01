@@ -8,9 +8,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-import WorkoutPlanList from '../../components/WorkoutPlanList/WorkoutPlanList';
-import FilterWorkouts from '../../components/WorkoutList/FilterWorkouts';
-import NavBar from './../../components/Navigation/navBar';
+import WorkoutPlanList from '../../Components/WorkoutPlanList/WorkoutPlanList';
+import FilterWorkouts from '../../Components/WorkoutList/FilterWorkouts';
+import NavBar from './../../Components/Navigation/navBar';
 import ApiClient from '../../Services/ApiClient';
 
 const useStyles = makeStyles({

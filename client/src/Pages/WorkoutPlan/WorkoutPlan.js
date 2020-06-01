@@ -3,8 +3,8 @@ import { Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
 import ApiClient from '../../Services/ApiClient';
-import Navigation from './../../components/Navigation/navBar';
-import WorkoutPlanDetail from '../../components/WorkoutPlan/WorkoutPlanDetail';
+import Navigation from './../../Components/Navigation/navBar';
+import WorkoutPlanDetail from '../../Components/WorkoutPlan/WorkoutPlanDetail';
 import './WorkoutPlan.css';
 
 function WorkoutPlan(props) {

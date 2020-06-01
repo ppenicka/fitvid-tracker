@@ -8,10 +8,10 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-import WorkoutList from '../../components/WorkoutList/WorkoutList';
-import FilterWorkouts from './../../components/WorkoutList/FilterWorkouts';
+import WorkoutList from '../../Components/WorkoutList/WorkoutList';
+import FilterWorkouts from './../../Components/WorkoutList/FilterWorkouts';
 import ApiClient from '../../Services/ApiClient';
-import Navigation from './../../components/Navigation/navBar';
+import Navigation from './../../Components/Navigation/navBar';
 import './ListofWorkouts.css';
 
 const useStyles = makeStyles({

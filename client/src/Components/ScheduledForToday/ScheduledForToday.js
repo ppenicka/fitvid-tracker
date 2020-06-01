@@ -9,7 +9,7 @@ import { createMuiTheme } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
 import MomentUtils from '@date-io/moment';
 
-import WorkoutOnHome from '../../components/WorkoutOnHome/WorkoutOnHome';
+import WorkoutOnHome from '../../Components/WorkoutOnHome/WorkoutOnHome';
 import ApiClient from '../../Services/ApiClient';
 
 const defaultMaterialTheme = createMuiTheme({

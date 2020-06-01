@@ -17,11 +17,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
 import RemoveIcon from '@material-ui/icons/Remove';
 
-import { setWorkoutPlan, updateTitlePlan } from './../../redux/actions/workoutPlanAction';
-import NavBar from './../../components/Navigation/navBar';
+import { setWorkoutPlan, updateTitlePlan } from './../../Redux/actions/workoutPlanAction';
+import NavBar from './../../Components/Navigation/navBar';
 import ApiClient from '../../Services/ApiClient';
-import PublicWorkout from '../../components/PublicWorkout/PublicWorkout';
-import DifficultyWorkout from '../../components/DifficultyWorkout/DifficultyWorkout';
+import PublicWorkout from '../../Components/PublicWorkout/PublicWorkout';
+import DifficultyWorkout from '../../Components/DifficultyWorkout/DifficultyWorkout';
 import './CreateWorkoutPlan.css';
 
 const useStyles = makeStyles((theme) => ({

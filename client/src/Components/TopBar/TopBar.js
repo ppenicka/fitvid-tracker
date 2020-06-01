@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { setUser } from '../../redux/actions/userActions';
-import { setSchedule } from '../../redux/actions/scheduleActions';
+import { setUser } from '../../Redux/actions/userActions';
+import { setSchedule } from '../../Redux/actions/scheduleActions';
 
 const useStyles = makeStyles((theme) => ({
   button: {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import { setUser } from '../../redux/actions/userActions';
-import { setSchedule } from '../../redux/actions/scheduleActions';
+import { setUser } from '../../Redux/actions/userActions';
+import { setSchedule } from '../../Redux/actions/scheduleActions';
 import ApiClient from '../../Services/ApiClient';
 
 function SetCredentials () {

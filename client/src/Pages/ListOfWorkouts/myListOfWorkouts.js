@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 
-import FilterWorkouts from './../../components/WorkoutList/FilterWorkouts';
-import WorkoutList from '../../components/WorkoutList/WorkoutList';
-import Navigation from './../../components/Navigation/navBar';
+import FilterWorkouts from './../../Components/WorkoutList/FilterWorkouts';
+import WorkoutList from '../../Components/WorkoutList/WorkoutList';
+import Navigation from './../../Components/Navigation/navBar';
 import ApiClient from '../../Services/ApiClient';
 import './myListOfWorkouts.css';
 

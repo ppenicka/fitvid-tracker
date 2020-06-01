@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import WorkoutList from '../../components/WorkoutList/WorkoutList';
-import FilterWorkouts from '../../components/WorkoutList/FilterWorkouts';
+import WorkoutList from '../../Components/WorkoutList/WorkoutList';
+import FilterWorkouts from '../../Components/WorkoutList/FilterWorkouts';
 import { Link } from 'react-router-dom';
 import ApiClient from '../../Services/ApiClient';
-import NavBar from './../../components/Navigation/navBar';
+import NavBar from './../../Components/Navigation/navBar';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
