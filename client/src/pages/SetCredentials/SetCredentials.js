@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { setUser } from '../../redux/actions/userActions';
 import { setSchedule } from '../../redux/actions/scheduleActions';
-import jwtDecode from 'jwt-decode';
 import ApiClient from '../../Services/ApiClient';
 
 function SetCredentials () {
