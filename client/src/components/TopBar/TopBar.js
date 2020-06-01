@@ -1,10 +1,11 @@
 import React from 'react';
-import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
-import { setUser } from '../../redux/actions/userActions';
-import { setSchedule } from '../../redux/actions/scheduleActions';
+import { useSelector, useDispatch } from "react-redux";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+
+import { setUser } from '../../redux/actions/userActions';
+import { setSchedule } from '../../redux/actions/scheduleActions';
 
 const useStyles = makeStyles((theme) => ({
   button: {

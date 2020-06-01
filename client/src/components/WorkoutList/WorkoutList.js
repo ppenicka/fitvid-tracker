@@ -1,6 +1,7 @@
 import React from 'react';
-import './WorkoutList.css';
+
 import WorkoutBox from '../WorkoutBox/WorkoutBox';
+import './WorkoutList.css';
 
 const WorkoutList = ({ workouts, passedIndex }) => {
   return (

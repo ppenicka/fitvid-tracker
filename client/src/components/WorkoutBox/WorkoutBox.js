@@ -1,24 +1,21 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import './WorkoutBox.css';
-import {
-  DatePicker,
-  MuiPickersUtilsProvider,
-} from '@material-ui/pickers';
-import { ThemeProvider } from "@material-ui/styles";
-import MomentUtils from '@date-io/moment';
-import { createMuiTheme } from "@material-ui/core";
-import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSchedule } from '../../redux/actions/scheduleActions';
-import ApiClient from '../../Services/ApiClient';
+import moment from 'moment';
 import Button from '@material-ui/core/Button';
+import MomentUtils from '@date-io/moment';
+import { ThemeProvider } from "@material-ui/styles";
+import { createMuiTheme } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+
+import ApiClient from '../../Services/ApiClient';
+import { setSchedule } from '../../redux/actions/scheduleActions';
+import './WorkoutBox.css';
 
 const useStyles = makeStyles((theme) => ({
   button: {
     backgroundColor: 'white',
-
     '&:hover': {
       backgroundColor: 'black',
       color: 'white',
@@ -52,7 +49,7 @@ const WorkoutBox = ({ workout, passedIndex }) => {
     });
   }
 
-  const classes = useStyles(); 
+  const classes = useStyles();
 
   function changeDate (date) {
     addToSchedule(date)
@@ -75,18 +72,18 @@ const WorkoutBox = ({ workout, passedIndex }) => {
             <div className="description-box" onClick={redirectToWorkout}>
               <h2>{workout.name}</h2>
               <p>{workout.description}</p>
-              {Object.values(workout.difficulties).includes(true) && <p > 
+              {Object.values(workout.difficulties).includes(true) && <p >
               <u>difficulty:</u><span> </span>
               {workout.difficulties.easy ? 'easy ' : null}
               {workout.difficulties.medium ? 'medium ' : null}
               {workout.difficulties.hard ? 'hard' : null}
-              </p>  }          
+              </p>  }
             </div>
             <div className="option-buttons">
             <Button className={classes.button} onClick={openPicker}>Add to schedule</Button>
             <DatePicker open={pickerOpen} id="datePicker" format='YYYY-MM-DD' onChange={changeDate} onClose={closePicker} style={{ display: 'none' }}></DatePicker>
               {workout.trainingDays ? (
-                <Link 
+                <Link
                   style={{ textDecoration: 'none'}}
                   to={{ pathname: '/WorkoutPlan', state: { workout: workout } }}
                 >

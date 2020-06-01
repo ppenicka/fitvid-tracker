@@ -16,4 +16,4 @@ function workoutLength ({length, setLength, editable}) {
   )
 };
 
-export default workoutLength
+export default workoutLength;

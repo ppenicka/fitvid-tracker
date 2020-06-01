@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './WorkoutOnHome.css';
-import Workout from '../../pages/Workout/Workout';
-import Card from '@material-ui/core/Card';
 import { useHistory } from 'react-router-dom';
+
+import Card from '@material-ui/core/Card';
+import './WorkoutOnHome.css';
+
 const WorkoutOnHome = (props) => {
 
   const history = useHistory();

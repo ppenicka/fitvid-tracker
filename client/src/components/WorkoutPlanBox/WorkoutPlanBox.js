@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import './WorkoutPlanBox.css';
-import {
-  DatePicker,
-  MuiPickersUtilsProvider,
-} from '@material-ui/pickers';
-import { ThemeProvider } from "@material-ui/styles";
-import MomentUtils from '@date-io/moment';
-import { createMuiTheme } from "@material-ui/core";
-import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import moment from 'moment';
+import MomentUtils from '@date-io/moment';
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { ThemeProvider } from "@material-ui/styles";
+import { createMuiTheme } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
 import { setSchedule } from '../../redux/actions/scheduleActions';
 import ApiClient from '../../Services/ApiClient';
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import './WorkoutPlanBox.css';
 
 const defaultMaterialTheme = createMuiTheme({
   palette: {
@@ -26,14 +24,12 @@ const defaultMaterialTheme = createMuiTheme({
 const useStyles = makeStyles((theme) => ({
   button: {
     backgroundColor: 'white',
-
     '&:hover': {
       backgroundColor: 'black',
       color: 'white',
     },
   },
 }));
-
 
 const WorkoutPlanBox = ({ plan }) => {
   const [pickerOpen, setPickerOpen] = useState(false);
@@ -88,10 +84,6 @@ const WorkoutPlanBox = ({ plan }) => {
             <div className="description-box" onClick={redirectToWorkoutPlan}>
               <h2>{plan.name}</h2>
               <p>{plan.description}</p>
-
-              {/* <p>
-                <u>difficulty:</u> {'workout.difficulty'}
-              </p> */}
             </div>
 
             <div className="option-buttons">

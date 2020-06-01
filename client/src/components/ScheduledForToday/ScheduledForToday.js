@@ -1,19 +1,15 @@
 import React from 'react';
+import moment from 'moment';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import moment from 'moment';
-import WorkoutOnHome from '../../components/WorkoutOnHome/WorkoutOnHome';
-import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  DatePicker,
-  MuiPickersUtilsProvider,
-} from '@material-ui/pickers';
-import MomentUtils from '@date-io/moment';
+import { DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
 import { ThemeProvider } from "@material-ui/styles";
 import { createMuiTheme } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
+import MomentUtils from '@date-io/moment';
 
+import WorkoutOnHome from '../../components/WorkoutOnHome/WorkoutOnHome';
 import ApiClient from '../../Services/ApiClient';
 
 const defaultMaterialTheme = createMuiTheme({

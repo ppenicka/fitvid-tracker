@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './WorkoutPlanDetail.css';
+
 import WorkoutOnHome from '../WorkoutOnHome/WorkoutOnHome';
 import NoWorkout from '../NoWorkout/NoWorkout';
 import ApiClient from '../../Services/ApiClient';
+import './WorkoutPlanDetail.css';
 
 function WorkoutPlanDetail ({ plan }) {
   const [workouts, setWorkouts] = useState([]);

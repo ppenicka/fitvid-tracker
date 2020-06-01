@@ -2,9 +2,8 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-
 function NameWorkout ({workoutName, setWorkoutName, editable}) {
-  
+
   const handlingWorkoutName = (event) => {
     event.preventDefault();
     setWorkoutName(event.target.value);
@@ -12,14 +11,12 @@ function NameWorkout ({workoutName, setWorkoutName, editable}) {
 
   return (
     <div>
-      {editable && 
+      {editable &&
         <div>
         <TextField id="standard-basic" label="Name of the Workout" defaultValue={workoutName} onChange={(event)=> handlingWorkoutName(event)} />
-        {/* <label for='workout-name'>Name of the workout: </label>
-        <input id='workout-name' type='text' defaultValue={workoutName} onChange={(event)=> handlingWorkoutName(event)}/>      */}
         </div>
       }
-      {!editable && 
+      {!editable &&
         <div>
           <Typography variant="h6" align="center">{workoutName}</Typography>
         </div>

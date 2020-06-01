@@ -5,20 +5,17 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-
-
 function DifficultyWorkout ({difficulties, setDifficulties, editable}) {
-  
+
+  const { easy, medium, hard } = difficulties;
+
   const handleChange = (event) => {
     setDifficulties({...difficulties, [event.target.name]: event.target.checked})
   }
 
-  const { easy, medium, hard } = difficulties;
-
-
   return (
     <div>
-      {editable && 
+      {editable &&
         <div>
         <Typography variant='body1' style={{fontWeight: 'bold'}}>Difficulty: </Typography>
         <FormControl>
@@ -37,12 +34,9 @@ function DifficultyWorkout ({difficulties, setDifficulties, editable}) {
             />
           </FormGroup>
         </FormControl>
-          {/* <label><input type="checkbox" name="easy" defaultChecked={difficulties.easy} onClick={()=>handleDifficulties("easy")}/>Easy</label>
-          <label><input type="checkbox" name="medium" defaultChecked={difficulties.medium} onClick={()=>handleDifficulties("medium")}/>Medium</label>
-          <label><input type="checkbox" name="hard" defaultChecked={difficulties.hard} onClick={()=>handleDifficulties("hard")}/>Hard</label> */}
         </div>
       }
-      {!editable && 
+      {!editable &&
         <div>
           <Typography variant='body1' style={{fontWeight: 'bold'}}>Difficulty: </Typography>
           {Object.keys(difficulties).map (difficulty=> (difficulties[difficulty]) && <Typography variant='body1'>{difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</Typography> )}

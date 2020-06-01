@@ -1,6 +1,6 @@
 import React from 'react';
-import './NoWorkout.css';
 import Card from '@material-ui/core/Card';
+import './NoWorkout.css';
 
 const NoWorkout = () => {
 

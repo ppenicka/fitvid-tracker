@@ -2,7 +2,6 @@ import React from 'react';
 import ChipInput from 'material-ui-chip-input';
 import Typography from '@material-ui/core/Typography';
 
-
 function Tags ({tags, setTags, editable}) {
   return (
   <div>
@@ -12,4 +11,4 @@ function Tags ({tags, setTags, editable}) {
   )
 };
 
-export default Tags
+export default Tags;

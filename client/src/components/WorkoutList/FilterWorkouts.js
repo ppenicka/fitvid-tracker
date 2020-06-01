@@ -1,22 +1,17 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import { ThemeProvider } from '@material-ui/styles';
-import { createMuiTheme } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
-import CommentIcon from '@material-ui/icons/Comment';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
-import Divider from '@material-ui/core/Divider';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import DirectionsIcon from '@material-ui/icons/Directions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
     margin: '2%',
   },
   difficulty: {
-      textAlign: "left", 
+      textAlign: "left",
       marginLeft: '8%',
-  }, 
+  },
   rootSearch: {
     margin: '2%',
     display: 'flex',
@@ -109,7 +104,7 @@ export default function FilterWorkouts({handleCheckBoxChange,handleInputChange})
                   dense
                   button
                   onClick={handleToggle(value)}
-                 
+
                 >
                   <ListItemIcon
                   >

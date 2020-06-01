@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import TextField from "@material-ui/core/TextField";
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
-
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -95,23 +90,6 @@ function TableW ({ exercises, setExercises, editable, setTimeVideo, setClickTime
     setExercises(exercises.slice(0, -1));
   }
 
-  // const handleRemoveSpecificRow = (index) => {
-  //   // const newRows = exercises
-  //   // console.log(newRows)
-  //   // const newRows = exercises.splice(index, 1);
-  //   const newRows = exercises.filter(row => row !== exercises[index]);
-
-  //   console.log("new Rows", newRows)
-  //   // console.log(newRows)
-  //   setExercises(newRows);
-  // }
-
-  // const handleCheckbox = (index) => {
-  //   exercises[index].done = !(exercises[index].done)
-  // }
-
-  // const logExercises= () => console.log(exercises)
-
   const classes = useStyles();
 
   return (
@@ -184,24 +162,6 @@ function TableW ({ exercises, setExercises, editable, setTimeVideo, setClickTime
                           fullWidth
                         />
                       </td>
-                      {/* <td>
-                      <input
-                        type="checkbox"
-                        name="done"
-                        defaultValue={exercises[idx].done}
-                        defaultChecked={exercises[idx].done}
-                        onClick={() => handleCheckbox(idx)}
-                        className="form-control"
-                      />
-                    </td> */}
-                      {/* <td>
-                      <button
-                        className="btn btn-outline-danger btn-sm"
-                        onClick={() => handleRemoveSpecificRow(idx)}
-                      >
-                        Remove
-                      </button>
-                    </td> */}
                     </tr>
                   )
                 })}
@@ -263,6 +223,5 @@ function TableW ({ exercises, setExercises, editable, setTimeVideo, setClickTime
     </div>
   );
 }
-
 
 export default TableW;
