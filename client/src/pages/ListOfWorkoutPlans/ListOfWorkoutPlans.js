@@ -1,9 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import WorkoutPlanList from '../../components/WorkoutPlanList/WorkoutPlanList';
-import FilterWorkouts from '../../components/WorkoutList/FilterWorkouts';
-import { Link } from 'react-router-dom';
-import ApiClient from '../../Services/ApiClient';
-import NavBar from './../../components/Navigation/navBar';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ThemeProvider } from '@material-ui/styles';
@@ -13,7 +8,26 @@ import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-const WorkoutPlans = ({}) => {
+import WorkoutPlanList from '../../components/WorkoutPlanList/WorkoutPlanList';
+import FilterWorkouts from '../../components/WorkoutList/FilterWorkouts';
+import NavBar from './../../components/Navigation/navBar';
+import ApiClient from '../../Services/ApiClient';
+
+const useStyles = makeStyles({
+  root: {
+    flexGrow: 1,
+  },
+});
+
+const defaultMaterialTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#212121',
+    },
+  },
+});
+
+const WorkoutPlans = ({ }) => {
   const classes = useStyles();
   const user = useSelector((state) => state.currentUser);
   const [value, setValue] = React.useState(0);
@@ -118,67 +132,53 @@ const WorkoutPlans = ({}) => {
 
     value === 1
       ? filterWorkoutsDifficultyAndSearch(
-          messengerObjectForBoxStatus,
-          searchValue,
-          myWorkoutPlans
-        )
+        messengerObjectForBoxStatus,
+        searchValue,
+        myWorkoutPlans
+      )
       : filterWorkoutsDifficultyAndSearch(
-          messengerObjectForBoxStatus,
-          searchValue,
-          AllWorkoutPlans
-        );
+        messengerObjectForBoxStatus,
+        searchValue,
+        AllWorkoutPlans
+      );
   };
 
   return !user ? (
     <Redirect to="/" />
   ) : (
-    <div>
-      <NavBar />
+      <div>
+        <NavBar />
 
-      <div className="header-search-view">
-        <ThemeProvider theme={defaultMaterialTheme}>
-          <Paper className={classes.root}>
-            <Tabs
-              value={value}
-              onChange={handleTabChange}
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab
-                label="Browse Workout Plans"
+        <div className="header-search-view">
+          <ThemeProvider theme={defaultMaterialTheme}>
+            <Paper className={classes.root}>
+              <Tabs
+                value={value}
+                onChange={handleTabChange}
                 indicatorColor="primary"
                 textColor="primary"
                 centered
-              />
-              <Tab label="My saved Workout Plans" />
-            </Tabs>
-          </Paper>
-        </ThemeProvider>
+              >
+                <Tab
+                  label="Browse Workout Plans"
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+                />
+                <Tab label="My saved Workout Plans" />
+              </Tabs>
+            </Paper>
+          </ThemeProvider>
+        </div>
+        <div className="list-filter-container">
+          <WorkoutPlanList plans={filteredWorkoutPlans}></WorkoutPlanList>
+          <FilterWorkouts
+            handleCheckBoxChange={handleCheckBoxChange}
+            handleInputChange={handleInputChange}
+          ></FilterWorkouts>
+        </div>
       </div>
-      <div className="list-filter-container">
-        <WorkoutPlanList plans={filteredWorkoutPlans}></WorkoutPlanList>
-        <FilterWorkouts
-          handleCheckBoxChange={handleCheckBoxChange}
-          handleInputChange={handleInputChange}
-        ></FilterWorkouts>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default WorkoutPlans;
-
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-  },
-});
-
-const defaultMaterialTheme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#212121',
-    },
-  },
-});

@@ -1,11 +1,10 @@
 import reduxStore from '../redux/stores/reduxStore';
 
-
 const getRequest = (path) => {
   const state = reduxStore.store.getState();
   const token = state.currentUser.token;
-
   const fetchUrl = `${process.env.REACT_APP_SERVER_URL}${path}`;
+
   return fetch(fetchUrl, {
     method: 'get',
     headers: new Headers({

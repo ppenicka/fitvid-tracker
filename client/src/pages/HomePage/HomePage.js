@@ -1,8 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import ScheduledForToday from '../../components/ScheduledForToday/ScheduledForToday';
-import NavBar from './../../components/Navigation/navBar';
 import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -10,7 +8,8 @@ import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 import AddIcon from '@material-ui/icons/Add';
 import Box from '@material-ui/core/Box';
 
-
+import ScheduledForToday from '../../components/ScheduledForToday/ScheduledForToday';
+import NavBar from './../../components/Navigation/navBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +21,6 @@ function HomePage() {
 
   const user = useSelector(state => state.currentUser);
   const classes = useStyles();
-
 
   return (
 

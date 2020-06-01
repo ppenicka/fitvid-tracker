@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import React from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+
 import reduxStore from './redux/stores/reduxStore';
 import Login from './pages/Login/Login';
 import Workout from './pages/Workout/Workout';
@@ -16,9 +16,7 @@ import myListOfWorkoutPlans from './pages/ListOfWorkoutPlans/MyListOfWorkoutPlan
 import WorkoutPlan from './pages/WorkoutPlan/WorkoutPlan';
 import CreateWorkoutPlan from './pages/CreateWorkoutPlan/CreateWorkoutPlan'
 import NavBar from './components/Navigation/navBar';
-
 import './App.css';
-
 
 function App () {
 
@@ -60,4 +58,3 @@ function App () {
   );
 }
 export default App;
-

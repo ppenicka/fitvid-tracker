@@ -1,20 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core';
-import WorkoutList from '../../components/WorkoutList/WorkoutList';
-import FilterWorkouts from './../../components/WorkoutList/FilterWorkouts';
-import './ListofWorkouts.css';
-import ApiClient from '../../Services/ApiClient';
-import Navigation from './../../components/Navigation/navBar';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Workout from '../Workout/Workout';
 
-function ListOfWorkouts(props) {
+import WorkoutList from '../../components/WorkoutList/WorkoutList';
+import FilterWorkouts from './../../components/WorkoutList/FilterWorkouts';
+import ApiClient from '../../Services/ApiClient';
+import Navigation from './../../components/Navigation/navBar';
+import './ListofWorkouts.css';
+
+const useStyles = makeStyles({
+  root: {
+    flexGrow: 1,
+  },
+});
+
+const defaultMaterialTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#212121',
+    },
+  },
+});
+
+function ListOfWorkouts (props) {
   const { handle } = props.match.params;
   const { state } = props.location;
   const classes = useStyles();
@@ -85,15 +99,15 @@ function ListOfWorkouts(props) {
 
     value === 1
       ? filterWorkoutsDifficultyAndSearch(
-          messengerObjectForBoxStatus,
-          searchValue,
-          myWorkouts
-        )
+        messengerObjectForBoxStatus,
+        searchValue,
+        myWorkouts
+      )
       : filterWorkoutsDifficultyAndSearch(
-          messengerObjectForBoxStatus,
-          searchValue,
-          AllWorkouts
-        );
+        messengerObjectForBoxStatus,
+        searchValue,
+        AllWorkouts
+      );
   };
 
   const filterWorkoutsDifficultyAndSearch = (
@@ -139,73 +153,43 @@ function ListOfWorkouts(props) {
   return !user ? (
     <Redirect to="/" />
   ) : (
-    <div>
-      <Navigation />
-      <div className="header-search-view">
-        <ThemeProvider theme={defaultMaterialTheme}>
-          <Paper className={classes.root}>
-            <Tabs
-              value={value}
-              onChange={handleTabChange}
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab
-                label="Browse Workouts"
+      <div>
+        <Navigation />
+        <div className="header-search-view">
+          <ThemeProvider theme={defaultMaterialTheme}>
+            <Paper className={classes.root}>
+              <Tabs
+                value={value}
+                onChange={handleTabChange}
                 indicatorColor="primary"
                 textColor="primary"
                 centered
-              />
-              <Tab label="My saved Workouts" />
-            </Tabs>
-          </Paper>
-        </ThemeProvider>
+              >
+                <Tab
+                  label="Browse Workouts"
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+                />
+                <Tab label="My saved Workouts" />
+              </Tabs>
+            </Paper>
+          </ThemeProvider>
+        </div>
+        <div className="list-filter-container">
+          <WorkoutList
+            workouts={filteredWorkouts}
+            passedIndex={
+              state && state.passedIndex >= 0 ? state.passedIndex : 'nothing'
+            }
+          ></WorkoutList>
+          <FilterWorkouts
+            handleCheckBoxChange={handleCheckBoxChange}
+            handleInputChange={handleInputChange}
+          ></FilterWorkouts>
+        </div>
       </div>
-      <div className="list-filter-container">
-        <WorkoutList
-          workouts={filteredWorkouts}
-          passedIndex={
-            state && state.passedIndex >= 0 ? state.passedIndex : 'nothing'
-          }
-        ></WorkoutList>
-        <FilterWorkouts
-          handleCheckBoxChange={handleCheckBoxChange}
-          handleInputChange={handleInputChange}
-        ></FilterWorkouts>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default ListOfWorkouts;
-
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-  },
-});
-
-const defaultMaterialTheme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#212121',
-    },
-  },
-});
-
-// prot Object Workout
-
-/* [{
-  createdBy: "5ebbaece0ee0fc2200784344",
-  description: "home round",
-  difficulties: {easy: false, medium: true, hard: false},
-  isPublic: true,
-  length: 4,
-  name: "homezz",
-  tags: ["home"],
-  type: "strenght",
-  youtubeId: "vc1E5CfRfos",
-  __v: 0,
-  _id: "5ebbaf090ee0fc2200784345",
-}] */

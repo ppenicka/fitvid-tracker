@@ -1,4 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+
 import NameWorkout from '../../components/NameWorkout/NameWorkout';
 import TableW from '../../components/TableW/TableW';
 import YoutubePlayer from '../../components/YoutubePLayer/YoutubePlayer'
@@ -9,18 +16,24 @@ import PublicWorkout from '../../components/PublicWorkout/PublicWorkout';
 import Countdown from '../../components/Countdown/Countdown';
 import Stopwatch from '../../components/Stopwatch/Stopwatch';
 import Navigation from './../../components/Navigation/navBar';
-import { Redirect } from 'react-router-dom';
-import { useSelector } from "react-redux";
 import Tags from '../../components/Tags/Tags';
 import WorkoutLength from '../../components/WorkoutLength/WorkoutLength';
 import ApiClient from '../../Services/ApiClient';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 
-function Workout(props) {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: "2% 8%"
+  },
+  button: {
+    backgroundColor: 'white',
+    '&:hover': {
+      backgroundColor: 'black',
+      color: 'white',
+    },
+  },
+}));
+
+function Workout (props) {
 
   const [exercises, setExercises] = useState(null);
   const [_id, setId] = useState(null);
@@ -31,7 +44,6 @@ function Workout(props) {
   const [isPublic, setIsPublic] = useState(false);
   const [tags, setTags] = useState([]);
 
-  //videoplayer states, work on table if status editable=false
   const [timeVideo, setTimeVideo] = useState();
   const [clickTimestamp, setClickTimestamp] = useState(false);
   const [editable, setEditable] = useState(false);
@@ -41,6 +53,7 @@ function Workout(props) {
 
   const user = useSelector(state => state.currentUser);
   const classes = useStyles();
+
 
   useEffect(() => {
     ApiClient.getWorkout(props.match.params.id)
@@ -59,7 +72,7 @@ function Workout(props) {
       })
   }, [])
 
-  function switchEditable() {
+  function switchEditable () {
     if (editable) {
       const updatedWorkout = {
         _id: _id,
@@ -82,14 +95,12 @@ function Workout(props) {
     }
   }
 
-
-
   return (
 
     (!user) ? <Redirect to="/" /> :
 
-    <div>
-      <Navigation />
+      <div>
+        <Navigation />
         <div className={classes.root}>
           <Paper elevation={3} style={{ margin: "3% 0%" }}>
             <Grid container direction="column" justify="center" alignItem="center" spacing={4} style={{ padding: "2% 5%" }}>
@@ -100,11 +111,11 @@ function Workout(props) {
                 <YoutubePlayer url={`https://www.youtube.com/watch?v=${youtubeId}`} timeVideo={timeVideo} clickTimestamp={clickTimestamp} />
               </Grid>
               {!editable &&
-                <Grid container  spacing={4}>
-                  <Grid item xs={3} minWidth="110px" style={{marginLeft:"16px"}}>
+                <Grid container spacing={4}>
+                  <Grid item xs={3} minWidth="110px" style={{ marginLeft: "16px" }}>
                     <Countdown />
                   </Grid>
-                  <Grid item xs={3} style={{marginLeft:"16px"}}>
+                  <Grid item xs={3} style={{ marginLeft: "16px" }}>
                     <Stopwatch />
                   </Grid>
                 </Grid>
@@ -123,9 +134,9 @@ function Workout(props) {
                 <DifficultyWorkout difficulties={difficulties} setDifficulties={setDifficulties} editable={editable} />
               </Grid>
               <Grid item xs={12} >
-                <DaysWorkout days={days} setDays={setDays} editable={editable} workoutId={_id}/>
+                <DaysWorkout days={days} setDays={setDays} editable={editable} workoutId={_id} />
               </Grid>
-              <Grid item xs={12} style={{paddingTop: "0px"}}>
+              <Grid item xs={12} style={{ paddingTop: "0px" }}>
                 <Tags tags={tags} setTags={setTags} editable={editable} />
               </Grid>
               <Grid item xs={12} >
@@ -141,22 +152,8 @@ function Workout(props) {
             </Grid>
           </Paper>
         </div>
-    </div>
+      </div>
   )
 }
 
 export default Workout;
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: "2% 8%"
-
-  },
-  button: {
-    backgroundColor: 'white',
-    '&:hover': {
-      backgroundColor: 'black',
-      color: 'white',
-    },
-  },
-}));

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,54 +10,9 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 
 import logo1 from '../../Asset/meghan-holmes-buWcS7G1_28-unsplash.jpg';
-import logo2 from '../../Asset/risen-wang-20jX9b35r_M-unsplash.jpg';
-
 import './login.css';
-
-function Login () {
-
-  const user = useSelector(state => state.currentUser);
-  const classes = useStyles();
-
-
-  return (
-    (user) ? <Redirect to="/HomePage" /> :
-
-
-    <Grid container component="main" className={classes.root}>
-    <CssBaseline />
-    <Grid item xs={false} sm={4} md={7} className={classes.image} />
-    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Fitvid Tracker
-        </Typography>
-        <form className={classes.form} noValidate>
-          <Button
-            fullWidth
-            variant="contained"
-            className={classes.submit}
-            onClick={(e) => { e.preventDefault(); window.location.href = `${process.env.REACT_APP_SERVER_URL}/login/google` }}
-          >
-            Log In with Google
-          </Button>
-          <Box mt={5}>
-          <Typography variant="subtitle1">WELCOME TO FITVID TRACKER, THE FIRST WEBSITE/APP TO CREATE YOUR PERSONAL WORKOUT USING YOUTUBE VIDEOS</Typography>
-          </Box>
-        </form>
-      </div>
-    </Grid>
-  </Grid>
-  )
-}
-
-export default Login;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -94,3 +50,44 @@ const useStyles = makeStyles((theme) => ({
   },
 
 }));
+
+function Login () {
+
+  const user = useSelector(state => state.currentUser);
+  const classes = useStyles();
+
+  return (
+    (user) ? <Redirect to="/HomePage" /> :
+
+
+    <Grid container component="main" className={classes.root}>
+    <CssBaseline />
+    <Grid item xs={false} sm={4} md={7} className={classes.image} />
+    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Fitvid Tracker
+        </Typography>
+        <form className={classes.form} noValidate>
+          <Button
+            fullWidth
+            variant="contained"
+            className={classes.submit}
+            onClick={(e) => { e.preventDefault(); window.location.href = `${process.env.REACT_APP_SERVER_URL}/login/google` }}
+          >
+            Log In with Google
+          </Button>
+          <Box mt={5}>
+          <Typography variant="subtitle1">WELCOME TO FITVID TRACKER, THE FIRST WEBSITE/APP TO CREATE YOUR PERSONAL WORKOUT USING YOUTUBE VIDEOS</Typography>
+          </Box>
+        </form>
+      </div>
+    </Grid>
+  </Grid>
+  )
+}
+
+export default Login;

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './WorkoutPlan.css';
-import WorkoutPlanDetail from '../../components/WorkoutPlan/WorkoutPlanDetail';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
+
 import ApiClient from '../../Services/ApiClient';
 import Navigation from './../../components/Navigation/navBar';
-
-
+import WorkoutPlanDetail from '../../components/WorkoutPlan/WorkoutPlanDetail';
+import './WorkoutPlan.css';
 
 function WorkoutPlan(props) {
 

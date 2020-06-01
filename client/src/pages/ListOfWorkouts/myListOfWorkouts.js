@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './myListOfWorkouts.css';
-import WorkoutList from '../../components/WorkoutList/WorkoutList';
-import FilterWorkouts from './../../components/WorkoutList/FilterWorkouts';
-import ApiClient from '../../Services/ApiClient';
-import Navigation from './../../components/Navigation/navBar';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 
+import FilterWorkouts from './../../components/WorkoutList/FilterWorkouts';
+import WorkoutList from '../../components/WorkoutList/WorkoutList';
+import Navigation from './../../components/Navigation/navBar';
+import ApiClient from '../../Services/ApiClient';
+import './myListOfWorkouts.css';
 
 function MyListOfWorkouts() {
 

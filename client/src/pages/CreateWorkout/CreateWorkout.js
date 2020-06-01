@@ -1,18 +1,9 @@
 import React, { useState } from 'react';
-import NameWorkout from '../../components/NameWorkout/NameWorkout';
-import TableW from '../../components/TableW/TableW';
-import DescriptionWorkout from '../../components/DescriptionWorkout/DescriptionWorkout';
-import DifficultyWorkout from '../../components/DifficultyWorkout/DifficultyWorkout';
-import DaysWorkout from '../../components/DaysWorkout/DaysWorkout';
-import YoutubePlayer from '../../components/YoutubePLayer/YoutubePlayer'
-import PublicWorkout from '../../components/PublicWorkout/PublicWorkout';
-import ApiClient from '../../Services/ApiClient';
-import NavBar from './../../components/Navigation/navBar'
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import nextDay from 'next-day';
-import { Redirect } from 'react-router-dom';
-import Tags from '../../components/Tags/Tags';
-//Mui
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -22,25 +13,41 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
+import NameWorkout from '../../components/NameWorkout/NameWorkout';
+import TableW from '../../components/TableW/TableW';
+import DescriptionWorkout from '../../components/DescriptionWorkout/DescriptionWorkout';
+import DifficultyWorkout from '../../components/DifficultyWorkout/DifficultyWorkout';
+import DaysWorkout from '../../components/DaysWorkout/DaysWorkout';
+import YoutubePlayer from '../../components/YoutubePLayer/YoutubePlayer'
+import PublicWorkout from '../../components/PublicWorkout/PublicWorkout';
+import Tags from '../../components/Tags/Tags';
+import NavBar from './../../components/Navigation/navBar'
 import WorkoutLength from '../../components/WorkoutLength/WorkoutLength';
-
-// redux
-import { useSelector, useDispatch } from "react-redux";
 import { setSchedule } from '../../redux/actions/scheduleActions';
+import ApiClient from '../../Services/ApiClient';
 
-//route
-import { Link } from 'react-router-dom';
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: "2% 8%"
+  },
+  button: {
+    backgroundColor: 'white',
+    color: "black",
+    '&:hover': {
+      backgroundColor: 'black',
+      color: 'white',
+    },
+  },
+}));
 
 function getIdVideoYoutube (url) {
   var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
   var match = url.match(regExp);
   return (match && match[7].length == 11) ? match[7] : false;
 }
-//-------------------------------------------
 
 function CreateWorkout () {
 
-  //redux
   const dispatch = useDispatch();
   const user = useSelector(state => state.currentUser);
   const schedule = useSelector(state => state.schedule);
@@ -127,8 +134,6 @@ function CreateWorkout () {
     }
   };
 
-
-
   const classes = useStyles();
 
   return (
@@ -153,7 +158,6 @@ function CreateWorkout () {
                   <Button
                     variant="contained"
                     className={classes.button}
-                    // endIcon={<Icon>send</Icon>}
                     size="small"
                     onClick={generateYoutubeId}
                   >Import</Button>
@@ -218,19 +222,3 @@ function CreateWorkout () {
 }
 
 export default CreateWorkout;
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-
-    padding: "2% 8%"
-
-  },
-  button: {
-    backgroundColor: 'white',
-    color: "black",
-    '&:hover': {
-      backgroundColor: 'black',
-      color: 'white',
-    },
-  },
-}));
