@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopo
   if (error) {
     console.log(error);
   } else {
-    console.log('connnected to db');
+    console.log(`Connnected to DB at ${process.env.MONGODB_URI}`);
   }
 });
 
