@@ -25,7 +25,6 @@ const processGoogleCb = async (ctx, next) => {
   const sessionToken = jwt.sign({ googleId: googleId }, process.env.SERVER_JWT_SECRET);
 
   let foundProfile = await Profile.findOne({ googleId });
-  console.log(foundProfile);
   if (foundProfile) {
     const result = await foundProfile.updateOne({ token: sessionToken });
   } else {

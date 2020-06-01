@@ -64,7 +64,6 @@ function CreateWorkout () {
 
   const generateYoutubeId = () => {
     const youtubeId = getIdVideoYoutube(youtubeUrl);
-    console.log("generateYoutubeId -> youtubeId", youtubeId)
     getworkoutLength(youtubeId);
     setYoutubeId(youtubeId);
   }
@@ -80,7 +79,6 @@ function CreateWorkout () {
   const getSchedule = (workoutId) => {
     const arr = [];
     const today = new Date();
-    console.log("getSchedule -> today", today)
     today.setDate(today.getDate() - 1);
 
     for (let i = 0; i < repeatWeeks; i++) {

@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 
 
 function Tags ({tags, setTags, editable}) {
-  console.log("EDITABLE", editable)
   return (
   <div>
   <Typography variant='body1' style={{ fontWeight: 'bold' }}>Tags:</Typography>

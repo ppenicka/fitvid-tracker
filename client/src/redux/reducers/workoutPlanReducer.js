@@ -13,7 +13,6 @@ export default function workoutPlanReducer(state = initialState, action) {
         workoutPlan: action.payload,
       };
     case actions.UPDATE_TITLE:
-      console.log('YYYEEEEEHHHHAAAA');
       return {
         ...state,
         title: action.payload,

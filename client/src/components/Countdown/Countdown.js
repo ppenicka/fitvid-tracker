@@ -35,7 +35,7 @@ class Countdown extends Component {
       } else {
         clearInterval(this.timer);
         this.setState({ timerOn: false });
-        // alert("Countdown ended"); it'll not play the sound until you close the alert, so for now commented out 
+        // alert("Countdown ended"); it'll not play the sound until you close the alert, so for now commented out
         alarmSound.play();
       }
     }, 10);
@@ -73,7 +73,7 @@ class Countdown extends Component {
       }
     }
   };
-  
+
   convertToMilliseconds = (time) => {
     const regex = /[,:;.]/;
     if(time.match(regex)===null) return Number(time)*1000;
@@ -82,15 +82,15 @@ class Countdown extends Component {
       const minutes = Number(time.split(regex)[0])*60000;
       return Number(minutes+seconds)
     }
-    if(time.split(regex).length===3) {     
+    if(time.split(regex).length===3) {
       const seconds = Number(time.split(regex)[2])*1000;
       const minutes = Number(time.split(regex)[1])*60000;
       const hours = Number(time.split(regex)[0])*3600000;
       return Number(hours+minutes+seconds)
     }
-    return undefined;    
+    return undefined;
   };
-  
+
   render() {
 
     const { timerTime, timerStart, timerOn,} = this.state;
@@ -105,7 +105,7 @@ class Countdown extends Component {
           <div className="Countdown-display">
             <IconButton size="small" onClick={() => this.adjustTimer("incHours")}><KeyboardArrowUpIcon/></IconButton>
             <IconButton size="small" onClick={() => this.adjustTimer("incMinutes")}><KeyboardArrowUpIcon/></IconButton>
-            <IconButton size="small" onClick={() => this.adjustTimer("incSeconds")}><KeyboardArrowUpIcon/></IconButton>  
+            <IconButton size="small" onClick={() => this.adjustTimer("incSeconds")}><KeyboardArrowUpIcon/></IconButton>
               <div className="Countdown-time">
                 <Typography variant="body1" style={{marginLeft: "5px"}}>{hours} : {minutes} : {seconds}</Typography>
               </div>
@@ -129,8 +129,10 @@ class Countdown extends Component {
             <Button onClick={this.resetTimer}>Reset</Button>
           )}
           <br/>
-          <TextField type="text" label="Set Timer" onChange={(event) => {console.log(this.convertToMilliseconds(event.target.value)); this.setState({timerTime: (this.convertToMilliseconds(event.target.value))})
-          }}></TextField>
+          <TextField type="text" label="Set Timer" onChange={(event) => {
+            this.setState({
+              timerTime: (this.convertToMilliseconds(event.target.value))
+            })}}></TextField>
       </div>
     );
   }

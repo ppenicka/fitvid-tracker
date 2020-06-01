@@ -22,7 +22,6 @@ function ListOfWorkouts(props) {
   const user = useSelector((state) => state.currentUser);
 
   const handleTabChange = (event, newValue) => {
-    console.log(newValue);
     setValue(newValue);
     if (newValue === 1) {
       setfilteredWorkouts(myWorkouts);
@@ -103,15 +102,11 @@ function ListOfWorkouts(props) {
     selectedListAll = AllWorkouts
   ) => {
     let filteredArray = [];
-    console.log('inside filter method {0}-->', filteredArray);
-    console.log('inside filter method {1}-->', checkBoxStatus);
-    console.log('inside filter method {2}-->', selectedListAll);
 
     if (checkBoxStatus.easy === true) {
       filteredArray = selectedListAll.filter((Workout) => {
         return Workout.difficulties.easy;
       });
-      console.log('the filteredArray should be empty', filteredArray);
     }
     if (checkBoxStatus.medium === true) {
       filteredArray = filteredArray.concat(
@@ -122,7 +117,7 @@ function ListOfWorkouts(props) {
       filteredArray = filteredArray.concat(
         selectedListAll.filter((Workout) => Workout.difficulties.hard)
       );
-    } 
+    }
 
     if (
       (checkBoxStatus.easy) ||
@@ -130,10 +125,8 @@ function ListOfWorkouts(props) {
       checkBoxStatus.hard
     ) {
       filteredArray = filteredArray.filter((Workout) => {
-        console.log('inside filter.length > 0 and on e true -->', Workout);
         return Workout.name.toLowerCase().includes(enteredInput.toLowerCase());
       });
-      console.log(filteredArray);
       setfilteredWorkouts(filteredArray);
     } else {
       let searchFilteredArray = selectedListAll.filter((Workout) => {

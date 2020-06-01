@@ -4,12 +4,11 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
 function workoutLength ({length, setLength, editable}) {
-  console.log("EDITABLE", editable)
 
   return (
   <div>
     <Typography variant='body1' style={{fontWeight: 'bold'}}>Workout length:</Typography>
-    {editable && 
+    {editable &&
     <TextField type="number" label="Minutes" defaultValue={length} onChange={(event) => {setLength(event.target.value) }}></TextField>}
     {!editable &&
     <p>{length}</p>}

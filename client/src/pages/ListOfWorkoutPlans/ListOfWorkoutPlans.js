@@ -19,7 +19,6 @@ const WorkoutPlans = ({}) => {
   const [value, setValue] = React.useState(0);
 
   const handleTabChange = (event, newValue) => {
-    console.log(newValue);
     setValue(newValue);
     if (newValue === 1) {
       setFilteredWorkoutPlans(myWorkoutPlans);
@@ -48,7 +47,6 @@ const WorkoutPlans = ({}) => {
 
   const handleInputChange = (enteredInput) => {
     setSearchValue(enteredInput);
-    console.log(enteredInput);
     filterWorkoutsDifficultyAndSearch(checkBoxStatus, enteredInput);
   };
 
@@ -84,7 +82,6 @@ const WorkoutPlans = ({}) => {
       let searchFilteredArray = selectedListAll.filter((Workout) =>
         Workout.name.toLowerCase().includes(enteredInput.toLowerCase())
       );
-      console.log(searchFilteredArray);
       setFilteredWorkoutPlans(searchFilteredArray);
     }
   };
@@ -118,8 +115,6 @@ const WorkoutPlans = ({}) => {
         messengerObjectForBoxStatus.hard = false;
       }
     }
-    console.log('hookStatus', checkBoxStatus);
-    console.log('messenger after --->', messengerObjectForBoxStatus);
 
     value === 1
       ? filterWorkoutsDifficultyAndSearch(

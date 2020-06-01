@@ -55,16 +55,12 @@ function MyListOfWorkouts() {
 
   const handleInputChange = (enteredInput) => {
     setSearchValue(enteredInput);
-    console.log(enteredInput);
     filterWorkoutsDifficultyAndSearch(checkBoxStatus, enteredInput);
   };
 
   const handleCheckBoxChange = (toggleKey) => {
     let messengerObjectForBoxStatus = Object.assign(checkBoxStatus);
-    console.log(
-      'this is the messenger before --->',
-      messengerObjectForBoxStatus
-    );
+
     if (toggleKey === 'easy') {
       if (checkBoxStatus.easy === false) {
         setcheckBoxStatus({ ...checkBoxStatus, easy: true });
@@ -92,8 +88,6 @@ function MyListOfWorkouts() {
         messengerObjectForBoxStatus.hard = false;
       }
     }
-    console.log('hookStatus', checkBoxStatus);
-    console.log('messenger after --->', messengerObjectForBoxStatus);
     filterWorkoutsDifficultyAndSearch(messengerObjectForBoxStatus);
   };
 
@@ -130,13 +124,12 @@ function MyListOfWorkouts() {
       let searchFilteredArray = fakeWorkouts.filter((Workout) =>
         Workout.name.toLowerCase().includes(enteredInput.toLowerCase())
       );
-      console.log(searchFilteredArray);
       setfilteredWorkouts(searchFilteredArray);
     }
   };
 
   return (
-    
+
     (!user) ? <Redirect to="/" /> :
 
     <div>

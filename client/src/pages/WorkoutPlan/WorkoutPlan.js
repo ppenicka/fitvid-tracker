@@ -16,7 +16,6 @@ function WorkoutPlan(props) {
 
    useEffect(() => {
      ApiClient.getWorkoutPlan(planId).then((data) => {
-       console.log("WorkoutPlan -> data", data)
        setPlan(data);
      });
    }, [])

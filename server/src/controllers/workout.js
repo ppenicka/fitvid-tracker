@@ -30,9 +30,7 @@ const getMyWorkouts = async (ctx, next) =>  {
 };
 
 const createWorkout = async (ctx, next) => {
-  console.log(ctx.request.body);
   const newWorkout = await Workout.create({...ctx.request.body, createdBy: ctx.user});
-  console.log(newWorkout);
   ctx.body = newWorkout._id;
   ctx.status = 201;
 };

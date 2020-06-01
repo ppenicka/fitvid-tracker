@@ -54,7 +54,6 @@ function TableW ({ exercises, setExercises, editable, setTimeVideo, setClickTime
 
   const handleChange = (event, index, name) => {
     event.preventDefault();
-    console.log(event.target.value, index, name);
     exercises[index][name] = event.target.value;
   }
 
@@ -67,7 +66,6 @@ function TableW ({ exercises, setExercises, editable, setTimeVideo, setClickTime
           .filter(item => item)
           .map(item => {
             const name = item[2].match(/(.+?)((\s{2,})|(,\s))/);
-            console.log("importFromClipboard -> name", name)
             const reps = item[2].match(/x\s?(\d{1,3})/);
 
             return {
