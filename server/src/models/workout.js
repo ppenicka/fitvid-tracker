@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-const { ProfileSchema } = require('./profile');
-
 const WorkoutSchema = mongoose.Schema({
   name: String,
   description: String,
@@ -23,8 +21,8 @@ const WorkoutSchema = mongoose.Schema({
 WorkoutSchema.pre('remove', async function () {
   await mongoose.model('Plan').update(
     { workoutList: this._id },
-    { $set: { "workoutList.$[objid]": null } },
-    { 
+    { $set: { 'workoutList.$[objid]': null } },
+    {
       multi: true,
       arrayFilters: [ { objid: this._id } ]
     }

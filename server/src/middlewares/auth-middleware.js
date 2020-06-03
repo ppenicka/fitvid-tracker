@@ -1,12 +1,9 @@
-const jwtDecode = require('jwt-decode');
-const jwt = require('jsonwebtoken');
-
 const { Profile } = require('../models/profile');
 
 function authHeaderErr (ctx, message) {
   ctx.set('WWW-Authenticate', 'Bearer');
   ctx.throw(401, message);
-};
+}
 
 const authorize = async (ctx, next) => {
   const decodedToken = ctx.state.jwtdata;

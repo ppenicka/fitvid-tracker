@@ -2,9 +2,9 @@ require('dotenv').config();
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const cors = require('@koa/cors');
-const serve = require("koa-static");
-const send = require("koa-send");
-const mount = require("koa-mount");
+const serve = require('koa-static');
+const send = require('koa-send');
+const mount = require('koa-mount');
 const mongoose = require('mongoose');
 
 const router = require('./routes/router.js');
@@ -26,9 +26,9 @@ app
   .use(bodyParser())
   .use(router.routes())
   .use(router.allowedMethods())
-  .use(mount("/", static_pages))
+  .use(mount('/', static_pages))
   .use(async (ctx) => {
-    await send(ctx, 'index.html', {root: __dirname + '/../../client/build/'})
+    await send(ctx, 'index.html', {root: __dirname + '/../../client/build/'});
   });
 
 app.listen(process.env.PORT);

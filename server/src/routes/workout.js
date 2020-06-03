@@ -1,11 +1,11 @@
 const Router = require('@koa/router');
 
 const { getWorkout,
-        createWorkout,
-        updateWorkout,
-        getAllWorkouts,
-        getMyWorkouts,
-        deleteWorkout } = require('../controllers/workout');
+  createWorkout,
+  updateWorkout,
+  getAllWorkouts,
+  getMyWorkouts,
+  deleteWorkout } = require('../controllers/workout');
 const auth = require('../middlewares/auth-middleware');
 const jwtMiddleware = require('../middlewares/jwt');
 

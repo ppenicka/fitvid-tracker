@@ -1,7 +1,6 @@
-const url = require('@koa/router').url;
-const {google} = require('googleapis');
+const { google } = require('googleapis');
 
-function createConnection() {
+function createConnection () {
   return new google.auth.OAuth2(
     process.env.GOOGLE_CLIENT_ID,
     process.env.GOOGLE_CLIENT_SECRET,
@@ -23,7 +22,7 @@ const getAuthUrl = () => {
   });
 };
 
-async function getGoogleTokens(code) {
+async function getGoogleTokens (code) {
   const auth = createConnection();
   const data = await auth.getToken(code);
 

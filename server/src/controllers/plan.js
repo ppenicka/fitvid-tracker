@@ -1,7 +1,7 @@
 const { Plan } = require('../models/plan');
 const { isValidObjectId } = require('../helpers/mongoose-helpers');
 
-const getPlan = async (ctx, next) => {
+const getPlan = async (ctx) => {
   const id = ctx.params.id;
   let plan;
   if (isValidObjectId(id)) {
@@ -18,22 +18,22 @@ const getPlan = async (ctx, next) => {
   }
 };
 
-const getAllPlans = async (ctx, next) => {
+const getAllPlans = async (ctx) => {
   let plans = await Plan.find().or([{ createdBy: ctx.user._id }, { isPublic: true }]);
   ctx.body = plans;
 };
 
-const getMyPlans = async (ctx, next) => {
+const getMyPlans = async (ctx) => {
   let plans = await Plan.find({ createdBy: ctx.user._id });
   ctx.body = plans;
 };
 
-const createPlan = async (ctx, next) => {
+const createPlan = async (ctx) => {
   await Plan.create({...ctx.request.body, createdBy: ctx.user._id});
   ctx.status = 201;
 };
 
-const updatePlan = async (ctx, next) => {
+const updatePlan = async (ctx) => {
   const id = ctx.params.id;
   let plan;
   if (isValidObjectId(id)) {
@@ -52,7 +52,7 @@ const updatePlan = async (ctx, next) => {
   }
 };
 
-const deletePlan = async (ctx, next) => {
+const deletePlan = async (ctx) => {
   const id = ctx.params.id;
   let plan;
   if (isValidObjectId(id)) {
@@ -69,7 +69,7 @@ const deletePlan = async (ctx, next) => {
       ctx.status = 403;
     }
   }
-}
+};
 
 module.exports = {
   getPlan,

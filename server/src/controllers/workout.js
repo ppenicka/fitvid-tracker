@@ -1,8 +1,7 @@
 const { Workout } = require('../models/workout');
-const { Profile } = require('../models/profile');
 const { isValidObjectId } = require('../helpers/mongoose-helpers');
 
-const getWorkout = async (ctx, next) => {
+const getWorkout = async (ctx) => {
   const id = ctx.params.id;
   let wo;
   if (isValidObjectId(id)) {
@@ -19,23 +18,23 @@ const getWorkout = async (ctx, next) => {
   }
 };
 
-const getAllWorkouts = async (ctx, next) =>  {
+const getAllWorkouts = async (ctx) =>  {
   let workouts = await Workout.find().or([{ createdBy: ctx.user._id }, { isPublic: true }]);
   ctx.body = workouts;
 };
 
-const getMyWorkouts = async (ctx, next) =>  {
+const getMyWorkouts = async (ctx) =>  {
   let workouts = await Workout.find( { createdBy: ctx.user._id } );
   ctx.body = workouts;
 };
 
-const createWorkout = async (ctx, next) => {
+const createWorkout = async (ctx) => {
   const newWorkout = await Workout.create({...ctx.request.body, createdBy: ctx.user});
   ctx.body = newWorkout._id;
   ctx.status = 201;
 };
 
-const updateWorkout = async (ctx, next) => {
+const updateWorkout = async (ctx) => {
   const id = ctx.params.id;
   let wo;
   if (isValidObjectId(id)) {
@@ -55,7 +54,7 @@ const updateWorkout = async (ctx, next) => {
   }
 };
 
-const deleteWorkout = async (ctx, next) => {
+const deleteWorkout = async (ctx) => {
   const id = ctx.params.id;
   let wo;
   if (isValidObjectId(id)) {

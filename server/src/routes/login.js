@@ -6,6 +6,6 @@ const router = new Router();
 
 router
   .get('/google', sendToGoogle)
-  .get('/google-cb', processGoogleCb)
+  .get('/google-cb', processGoogleCb);
 
 module.exports = router;
