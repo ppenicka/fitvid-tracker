@@ -39,9 +39,9 @@ const WorkoutBox = ({ workout, passedIndex }) => {
 
   function addToSchedule (startDate) {
     const newScheduleItem = {
-          day: moment(startDate).format('YYYY-MM-DD'),
-          workout: workout._id
-        }
+      day: moment(startDate).format('YYYY-MM-DD'),
+      workout: workout._id
+    }
 
     const newSchedule = { userId: schedule.userId, map: [...schedule.map, newScheduleItem] };
     ApiClient.updateSchedule(newSchedule).then((response) => {
@@ -67,30 +67,37 @@ const WorkoutBox = ({ workout, passedIndex }) => {
   return (
     <ThemeProvider theme={defaultMaterialTheme}>
       <MuiPickersUtilsProvider utils={MomentUtils}>
-        <div className="single-workout-box" style={{height: "220px"}}>
+        <div className="single-workout-box" style={{ height: "220px" }}>
           <div className="description-and-middle-box">
             <div className="description-box" onClick={redirectToWorkout}>
               <h2>{workout.name}</h2>
-              <p>{workout.description}</p>
+              <p>
+                {
+                  (workout.description.length < 120) ? workout.description :
+                    workout.description.slice(0, 120)
+                    + workout.description.slice(120).slice(0, workout.description.slice(120).indexOf(' '))
+                    + ' ...'
+                }
+              </p>
               {Object.values(workout.difficulties).includes(true) && <p >
-              <u>difficulty:</u><span> </span>
-              {workout.difficulties.easy ? 'easy ' : null}
-              {workout.difficulties.medium ? 'medium ' : null}
-              {workout.difficulties.hard ? 'hard' : null}
-              </p>  }
+                <u>difficulty:</u><span> </span>
+                {workout.difficulties.easy ? 'easy ' : null}
+                {workout.difficulties.medium ? 'medium ' : null}
+                {workout.difficulties.hard ? 'hard' : null}
+              </p>}
             </div>
             <div className="option-buttons">
-            <Button className={classes.button} onClick={openPicker}>Add to schedule</Button>
-            <DatePicker open={pickerOpen} id="datePicker" format='YYYY-MM-DD' onChange={changeDate} onClose={closePicker} style={{ display: 'none' }}></DatePicker>
+              <Button className={classes.button} onClick={openPicker}>Add to schedule</Button>
+              <DatePicker open={pickerOpen} id="datePicker" format='YYYY-MM-DD' onChange={changeDate} onClose={closePicker} style={{ display: 'none' }}></DatePicker>
               {workout.trainingDays ? (
                 <Link
-                  style={{ textDecoration: 'none'}}
+                  style={{ textDecoration: 'none' }}
                   to={{ pathname: '/WorkoutPlan', state: { workout: workout } }}
                 >
                   <Button className={classes.button}>View Workout Plan</Button>
                 </Link>
               ) : (
-                  <Link style={{ textDecoration: 'none'}} to={{ pathname: '/CreateWorkoutPlan', state: { workout: workout, passedIndex: passedIndex } }}>
+                  <Link style={{ textDecoration: 'none' }} to={{ pathname: '/CreateWorkoutPlan', state: { workout: workout, passedIndex: passedIndex } }}>
                     <Button className={classes.button}>Add to Workout Plan</Button>
                   </Link>
                 )}

@@ -19,7 +19,14 @@ const WorkoutOnHome = (props) => {
         <div className="description-and-middle-box">
           <div className="description-box">
             <h2>{props.workout.name}</h2>
-            <p>{props.workout.description}</p>
+            <p>
+              {
+                (props.workout.description.length < 120) ? props.workout.description :
+                  props.workout.description.slice(0, 120)
+                  + props.workout.description.slice(120).slice(0, props.workout.description.slice(120).indexOf(' '))
+                  + ' ...'
+              }
+            </p>
             <p>
               <u>difficulty:</u><span> </span>
               {props.workout.difficulties.easy ? 'easy ' : null}
