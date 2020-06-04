@@ -108,6 +108,7 @@ const WorkoutBox = ({ workout, passedIndex }) => {
             <iframe
               src={`https://www.youtube.com/embed/${workout.youtubeId}`}
               frameborder="0"
+              title={'YouTube video player for workout ' + workout._id}
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
             ></iframe>

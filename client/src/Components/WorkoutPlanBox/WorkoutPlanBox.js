@@ -110,6 +110,7 @@ const WorkoutPlanBox = ({ plan }) => {
               src={`https://www.youtube.com/embed/${firstYoutubeId}`}
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              title={'YouTube video player for plan ' + plan._id}
               allowfullscreen
             ></iframe>
           </div>

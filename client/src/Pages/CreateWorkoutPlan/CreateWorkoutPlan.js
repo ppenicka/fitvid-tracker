@@ -151,8 +151,6 @@ function CreateWorkoutPlan (props) {
       workoutList: WorkoutPlanRedux,
       isPublic: isPublic,
       difficulties: difficulties,
-
-
     };
 
     ApiClient.createPlan(newWorkoutPlan);
@@ -242,6 +240,7 @@ function CreateWorkoutPlan (props) {
                           <iframe
                             src={`https://www.youtube.com/embed/${workout.youtubeId}`}
                             frameborder="0"
+                            title="Player for imported YouTube video"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen
                           ></iframe>

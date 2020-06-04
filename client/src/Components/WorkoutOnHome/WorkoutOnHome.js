@@ -39,6 +39,7 @@ const WorkoutOnHome = (props) => {
           <iframe
             src={`https://www.youtube.com/embed/${props.workout.youtubeId}`}
             frameborder="0"
+            title={'YouTube video player for workout' + props.workout._id}
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
