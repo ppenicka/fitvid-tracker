@@ -9,6 +9,9 @@ function addDefSrcIgnore (srcArr) {
     '!.git{,/**}',
     '!**/node_modules{,/**}',
     '!**/build{,/**}',
+    '!**/package.json',
+    '!**/package-lock.json',
+    '!**/manifest.json',
   ]);
 }
 
