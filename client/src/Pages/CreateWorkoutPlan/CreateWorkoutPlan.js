@@ -91,14 +91,12 @@ function CreateWorkoutPlan (props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.currentUser);
-  const { handle } = props.match.params;
   const { state } = props.location;
 
   const WorkoutPlanRedux = useSelector(
     (state) => state.workoutPlanCreation.workoutPlan
   );
   const [isPublic, setIsPublic] = useState(false);
-  const [PlanName, setPlanName] = useState('');
   const [difficulties, setDifficulties] = useState({
     easy: false,
     medium: false,

@@ -27,7 +27,7 @@ const defaultMaterialTheme = createMuiTheme({
   },
 });
 
-const WorkoutPlans = ({ }) => {
+const WorkoutPlans = () => {
   const classes = useStyles();
   const user = useSelector((state) => state.currentUser);
   const [value, setValue] = React.useState(0);

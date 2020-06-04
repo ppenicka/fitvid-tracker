@@ -65,7 +65,7 @@ function ScheduledForToday () {
 
   function getWorkoutsOfSelectedDay (dateFormatted) {
     if (schedule) {
-      const todaysIds = schedule.map.filter(day => (moment(day.day).format('YYYY-MM-DD') == dateFormatted));
+      const todaysIds = schedule.map.filter(day => (moment(day.day).format('YYYY-MM-DD') === dateFormatted));
       setTodaysWorkoutIds(todaysIds);
 
       if (todaysIds.length > 0) {

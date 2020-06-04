@@ -29,7 +29,6 @@ const defaultMaterialTheme = createMuiTheme({
 });
 
 function ListOfWorkouts (props) {
-  const { handle } = props.match.params;
   const { state } = props.location;
   const classes = useStyles();
   const [value, setValue] = React.useState(0);

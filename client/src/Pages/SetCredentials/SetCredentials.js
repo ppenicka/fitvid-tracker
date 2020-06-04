@@ -28,8 +28,6 @@ function SetCredentials () {
     dispatch(setUser(userObj));
   });
 
-  const fetchSecheduleUrl = process.env.REACT_APP_SERVER_URL + '/schedule/';
-
   ApiClient.getSchedule()
     .then(data => { dispatch(setSchedule(data)) });
 
