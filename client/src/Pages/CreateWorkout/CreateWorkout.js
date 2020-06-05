@@ -18,7 +18,7 @@ import TableW from '../../Components/TableW/TableW';
 import DescriptionWorkout from '../../Components/DescriptionWorkout/DescriptionWorkout';
 import DifficultyWorkout from '../../Components/DifficultyWorkout/DifficultyWorkout';
 import DaysWorkout from '../../Components/DaysWorkout/DaysWorkout';
-import YoutubePlayer from '../../Components/YoutubePLayer/YoutubePlayer'
+import YouTubePlayer from '../../Components/YouTubePlayer/YouTubePlayer';
 import PublicWorkout from '../../Components/PublicWorkout/PublicWorkout';
 import Tags from '../../Components/Tags/Tags';
 import NavBar from './../../Components/Navigation/navBar'
@@ -165,7 +165,7 @@ function CreateWorkout () {
               {youtubeId &&
                 <div>
                   <Grid item xs={12} align="center">
-                    <YoutubePlayer url={`https://www.youtube.com/watch?v=${youtubeId}`} />
+                    <YouTubePlayer url={`https://www.youtube.com/watch?v=${youtubeId}`} />
                   </Grid>
                   <Grid item xs={12} align="right">
                     <Button

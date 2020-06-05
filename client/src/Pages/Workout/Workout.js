@@ -8,7 +8,7 @@ import Paper from '@material-ui/core/Paper';
 
 import NameWorkout from '../../Components/NameWorkout/NameWorkout';
 import TableW from '../../Components/TableW/TableW';
-import YoutubePlayer from '../../Components/YoutubePLayer/YoutubePlayer'
+import YouTubePlayer from '../../Components/YouTubePlayer/YouTubePlayer';
 import DescriptionWorkout from '../../Components/DescriptionWorkout/DescriptionWorkout';
 import DifficultyWorkout from '../../Components/DifficultyWorkout/DifficultyWorkout';
 import DaysWorkout from '../../Components/DaysWorkout/DaysWorkout';
@@ -108,7 +108,7 @@ function Workout (props) {
                 <NameWorkout workoutName={workoutName} setWorkoutName={setWorkoutName} editable={editable} />
               </Grid>
               <Grid item xs={12} align="center">
-                <YoutubePlayer url={`https://www.youtube.com/watch?v=${youtubeId}`} timeVideo={timeVideo} clickTimestamp={clickTimestamp} />
+                <YouTubePlayer url={`https://www.youtube.com/watch?v=${youtubeId}`} timeVideo={timeVideo} clickTimestamp={clickTimestamp} />
               </Grid>
               {!editable &&
                 <Grid container spacing={4}>
