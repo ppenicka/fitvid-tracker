@@ -46,6 +46,7 @@ The application's data model consists of the following object types:
 
 - `REACT_APP_SERVER_URL` - URL of the server part of the application, including port number (e.g. *http://localhost:3000*)
 - `REACT_APP_GOOGLE_API_KEY` - API key for YouTube v3 API obtained from [Google APIs](https://console.developers.google.com/)
+- `REACT_APP_GOOGLE_ANALYTICS_ID` - ID of your app registered in [Google Analytics](http://analytics.google.com/); tracking will only be used in a production environment, app activity in development environment is not tracked
 
 6. Start up your database.
 7. Start up the server by running the `node src/index.js` command inside the *server* directory.

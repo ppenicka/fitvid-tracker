@@ -23,7 +23,9 @@
     "url": "https://github.com/ppenicka/fitvid-tracker/issues"
   },
   "homepage": "https://github.com/ppenicka/fitvid-tracker#readme",
-  "dependencies": {},
+  "dependencies": {
+    "react-ga": "^3.0.0"
+  },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint-plugin-flowtype": "^5.1.3",

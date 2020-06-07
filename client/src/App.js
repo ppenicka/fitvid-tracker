@@ -14,6 +14,7 @@ import ListOfWorkoutPlans from './Pages/ListOfWorkoutPlans/ListOfWorkoutPlans';
 import WorkoutPlan from './Pages/WorkoutPlan/WorkoutPlan';
 import CreateWorkoutPlan from './Pages/CreateWorkoutPlan/CreateWorkoutPlan'
 import NavBar from './Components/Navigation/navBar';
+import GoogleAnalytics from './Services/GoogleAnalytics';
 import './App.css';
 
 function App () {
@@ -23,6 +24,7 @@ function App () {
       <Provider store={reduxStore.store}>
         <PersistGate loading={null} persistor={reduxStore.persistor}>
           <Router>
+            {GoogleAnalytics.init() && <GoogleAnalytics.RouteTracker />}
             <Route exact path="/"
               component={Login} />
             <Route exact path="/setCredentials"
